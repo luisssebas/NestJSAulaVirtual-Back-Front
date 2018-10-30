@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, ManyToOne } from 'typeorm';
 import { CursoEntity } from 'curso/curso.entity';
 
 @Entity('Profesor')
@@ -13,7 +13,7 @@ export class ProfesorEntity{
 
     @Column('text') emailProfesor: string;
 
-    @OneToMany(type => CursoEntity, curso => curso.nombreCurso)
+    @ManyToOne(type => CursoEntity, curso => curso.nombreCurso)
     @JoinColumn()
     curso: CursoEntity;
 }

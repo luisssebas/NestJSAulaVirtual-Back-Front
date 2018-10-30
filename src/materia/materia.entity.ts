@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, ManyToOne } from 'typeorm';
 import { CursoEntity } from 'curso/curso.entity';
 
 @Entity('Materia')
@@ -9,7 +9,7 @@ export class MateriaEntity{
 
     @Column('int') horasMateria: number;
 
-    @OneToMany(type => CursoEntity, curso => curso.nombreCurso)
+    @ManyToOne(type => CursoEntity, curso => curso.nombreCurso)
     @JoinColumn()
     curso: CursoEntity;
 }

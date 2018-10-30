@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, OneToMany, ManyToMany } from 'typeorm';
 import { CursoEntity } from 'curso/curso.entity';
+import { TareaEntity } from 'tarea/tarea.entity';
 
 @Entity('Estudiante')
 export class EstudianteEntity{
@@ -16,4 +17,8 @@ export class EstudianteEntity{
     @OneToMany(type => CursoEntity, curso => curso.nombreCurso)
     @JoinColumn()
     curso: CursoEntity;
+
+    @ManyToMany(type => TareaEntity, tareas => tareas.nombreTarea)
+    @JoinColumn()
+    tareas: TareaEntity;
 }
