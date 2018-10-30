@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, OneToOne, JoinColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, OneToOne, JoinColumn, OneToMany } from 'typeorm';
 import { ProfesorEntity } from 'profesor/profesor.entity';
 import { EstudianteEntity } from 'estudiante/estudiante.entity';
 import { MateriaEntity } from 'materia/materia.entity';
@@ -19,15 +19,15 @@ export class TareaEntity{
 
     @CreateDateColumn() fechaFinTarea: Date;
 
-    @OneToOne(type => ProfesorEntity)
+    @OneToMany(type => ProfesorEntity, profesor => profesor.nombreProfesor)
     @JoinColumn()
     profesor: ProfesorEntity;
 
-    @OneToOne(type => EstudianteEntity)
+    @OneToMany(type => EstudianteEntity, estudiante => estudiante.nombreEstudiante)
     @JoinColumn()
     estudiante: EstudianteEntity;
 
-    @OneToOne(type => MateriaEntity)
+    @OneToMany(type => MateriaEntity, materia => materia.nombreMateria)
     @JoinColumn()
     materia: MateriaEntity;
 }
