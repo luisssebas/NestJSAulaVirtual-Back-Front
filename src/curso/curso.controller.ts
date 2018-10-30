@@ -1,33 +1,41 @@
-import { Controller, Get, Post, Put, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Render, Logger, Body, Param } from '@nestjs/common';
 import { CursoService } from './curso.service';
+import { CursoDTO } from './curso.dto';
 
 @Controller('curso')
 export class CursoController {
-    
+    private logger = new Logger('CursoController');
+
     constructor(private cursoService: CursoService){}
 
-    @Get()
-    showAllCursos(){
-
+    @Get('index')
+    //@UseGuards(new AuthGuard())
+    @Render('Curso/index')
+    async showAllCursos(){
+        const  cursos = await this.cursoService.showAll();
+        return {cursos};
     }
 
-    @Post()
-    createCurso(){
-        
+    @Post('create')
+    @Render('Curso/create')
+    createCurso(@Body() data: CursoDTO){
+        this.logger.log(JSON.stringify(data));
+        return this.cursoService.create(data);
     }
 
-    @Get(':id')
-    readCurso(){
-
+    @Get('data/:id')
+    readCurso(@Param('id') id: number){
+        return this.cursoService.read(id);
     }
 
-    @Put(':id')
-    updateCurso(){
-
+    @Put('update/:id')
+    updateCurso(@Param('id') id: number, @Body() data: Partial<CursoDTO>){
+        this.logger.log(JSON.stringify(data));
+        return this.cursoService.update(id, data);
     }
 
-    @Delete(':id')
-    destroyCurso(){
-
+    @Delete('delete/:id')
+    destroyCurso(@Param('id') id:number){
+        return this.cursoService.destroy(id);
     }
 }
