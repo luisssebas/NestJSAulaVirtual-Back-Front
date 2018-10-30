@@ -1,0 +1,35 @@
+<h2>Lista de Productos</h2>
+<div class="entry">
+    <table class="table">
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Direccion</th>
+            <th>Email</th>
+            <th>Curso</th>
+            <th></th>
+        </tr>
+        {{#each estudiantes}}
+            <tr>   
+                <td>{{this.nombreEstudiante}}</td>
+                <td>{{this.apellidoEstudiante}}</td>
+                <td>{{this.direccionEstudiante}}</td>
+                <td>{{this.emailEstudiante}}</td>
+                <td>{{this.cursoId}}</td>
+                <td><button onclick="window.location.href='Usuario/Edit'">Edit</button>
+                <button onclick="window.location.href='Usuario/Delete'">Delete</button></td>
+            </tr> 
+        {{/each}} 
+        </tr>
+    </table>
+    <br/>
+    <button onclick="window.location.href='/Producto/Create'">Create</button>
+    <button onclick="goBack()">Regresar</button>
+
+    <script>
+    function goBack() {
+        window.history.back();
+    }
+    </script>
+
+    <button onclick="window.location.href='/index'">Inicio</button>

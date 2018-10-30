@@ -13,8 +13,8 @@ export class ProfesorController {
     //@UseGuards(new AuthGuard())
     @Render('Profesor/index')
     async showAllCursos(){
-        const  cursos = await this.profesorService.showAll();
-        return {cursos};
+        const  profesores = await this.profesorService.showAll();
+        return {profesores};
     }
 
     @Post('create')

@@ -13,8 +13,8 @@ export class EstudianteController {
     //@UseGuards(new AuthGuard())
     @Render('Estudiante/index')
     async showAllCursos(){
-        const  estudiante = await this.estudianteService.showAll();
-        return {estudiante};
+        const  estudiantes = await this.estudianteService.showAll();
+        return {estudiantes};
     }
 
     @Post('create')

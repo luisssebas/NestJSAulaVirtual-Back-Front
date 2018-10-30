@@ -13,8 +13,8 @@ export class MateriaController {
     //@UseGuards(new AuthGuard())
     @Render('Materia/index')
     async showAllCursos(){
-        const  materia = await this.materiaService.showAll();
-        return {materia};
+        const  materias = await this.materiaService.showAll();
+        return {materias};
     }
 
     @Post('create')
