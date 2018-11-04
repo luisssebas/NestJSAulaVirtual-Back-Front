@@ -23,7 +23,7 @@ export class TareaEntity{
     @JoinColumn()
     profesor: ProfesorEntity;
 
-    @ManyToMany(type => EstudianteEntity, estudiante => estudiante.nombreEstudiante)
+    @ManyToOne(type => EstudianteEntity, estudiantes => estudiantes.nombreEstudiante)
     @JoinColumn()
     estudiante: EstudianteEntity;
 

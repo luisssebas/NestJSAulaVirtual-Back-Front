@@ -9,7 +9,7 @@ export class MateriaEntity{
 
     @Column('int') horasMateria: number;
 
-    @ManyToOne(type => CursoEntity, curso => curso.nombreCurso)
+    @ManyToOne(type => CursoEntity, cursos => cursos.nombreCurso)
     @JoinColumn()
-    curso: CursoEntity;
+    cursos: CursoEntity;
 }
