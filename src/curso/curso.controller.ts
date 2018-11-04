@@ -29,6 +29,7 @@ export class CursoController {
     }
 
     @Put('update/:id')
+    @Render('Curso/edit')
     updateCurso(@Param('id') id: number, @Body() data: Partial<CursoDTO>){
         this.logger.log(JSON.stringify(data));
         return this.cursoService.update(id, data);

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <div>
+            <title>Edit</title>
+            <link rel="stylesheet" type="text/css" href="css/page.css">
+        </div>
+    </head>
+    <body>
+        <div class="header">
+            <div class="topMenu">
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Contactenos</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="content">
+            <h2>Lista de Cursos</h2>
+        <div class="entry">
+            <form action="/action_page.php" method="get">
+                Nombre del Curso: <input type="text" name="Cname"><br>
+                <button type="submit">Submit</button><br>
+            </form>
+            
+            <button onclick="goBack()">Regresar</button>
+
+            <script>
+            function goBack() {
+                window.history.back();
+            }
+            </script>
+
+            <button onclick="window.location.href='/index'">Inicio</button>
+        </div>       
+    </body>
+</html>
