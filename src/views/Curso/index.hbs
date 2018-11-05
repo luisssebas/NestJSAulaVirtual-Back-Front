@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>Curso</title>
-        <link rel="stylesheet" type="text/css" href="css/page.css">
+        <link rel="stylesheet" type="text/css" href="./css/page.css">
     </head>
     <body>
         <div class="header">
@@ -24,14 +24,14 @@
                 {{#each cursos}}
                     <tr>   
                         <td>{{this.nombreCurso}}</td>
-                        <td><button onclick="window.location.href='Edit' {{this.idCurso}}">Edit</button>
-                        <button onclick="window.location.href='Delete'">Delete</button></td>
+                        <td><button onclick="window.location.href='update/{{this.id}}'" >Edit</button>
+                        <button type="submit" formmethod="POST" value="delete">Delete</button></td>
                     </tr> 
                 {{/each}} 
                 </tr>
             </table>
             <br/>
-            <button onclick="window.location.href='/Producto/Create'">Create</button>
+            <button onclick="window.location.href='/Curso/create'">Create</button>
             <button onclick="goBack()">Regresar</button>
 
             <script>

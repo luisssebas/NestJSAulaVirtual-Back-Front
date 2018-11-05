@@ -3,7 +3,6 @@
     <head>
         <div>
             <title>Edit</title>
-            <link rel="stylesheet" type="text/css" href="css/page.css">
         </div>
     </head>
     <body>
@@ -18,11 +17,10 @@
         <div class="content">
             <h2>Lista de Cursos</h2>
         <div class="entry">
-            <form action="/action_page.php" method="get">
-                Nombre del Curso: <input type="text" name="Cname"><br>
-                <button type="submit">Submit</button><br>
-            </form>
             
+            Nombre del Curso: <input type="text" placeholder="Curso" class="form-control" name="nobreCurso"><br>
+            <button type="submit" value="update/{{cursos.id}}" >Editar</button><br>
+                       
             <button onclick="goBack()">Regresar</button>
 
             <script>
@@ -31,7 +29,7 @@
             }
             </script>
 
-            <button onclick="window.location.href='/index'">Inicio</button>
+            <button onclick="window.location.href='/Curso/index'">Inicio</button>
         </div>       
     </body>
 </html>
