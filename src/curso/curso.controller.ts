@@ -42,9 +42,9 @@ export class CursoController {
         return {cursos};
     }
 
-    //Update POST
+    //Update PUT
 
-    @Post('update/:id')
+    @Put('update')
     updateCurso(@Param('id') id: number, @Body() data: Partial<CursoDTO>){
         this.logger.log(JSON.stringify(data));
         console.log(data);

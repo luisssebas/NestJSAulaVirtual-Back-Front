@@ -25,7 +25,8 @@
                     <tr>   
                         <td>{{this.nombreCurso}}</td>
                         <td><button onclick="window.location.href='update/{{this.id}}'" >Edit</button>
-                        <button type="submit" formmethod="POST" value="delete">Delete</button></td>
+                        <form method="POST" action="delete/{{this.id}}"><button type="submit" value="delete">Delete</button></td></form>
+                        
                     </tr> 
                 {{/each}} 
                 </tr>

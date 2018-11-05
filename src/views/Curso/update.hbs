@@ -17,12 +17,13 @@
         <div class="content">
             <h2>Lista de Cursos</h2>
         <div class="entry">
-            
-            Nombre del Curso: <input type="text" placeholder="Curso" class="form-control" name="nobreCurso"><br>
-            <button type="submit" value="update/{{cursos.id}}" >Editar</button><br>
-                       
+            <form method="Delete">
+                <input type="hidden" name="id" class="form-control" value="{{cursos.id}}">
+                Nombre del Curso: <input type="text" placeholder="Curso" class="form-control" name="nombreCurso"><br>
+                <button type="submit" value="update">Editar</button><br>
+            </form>               
             <button onclick="goBack()">Regresar</button>
-
+            
             <script>
             function goBack() {
                 window.history.back();
