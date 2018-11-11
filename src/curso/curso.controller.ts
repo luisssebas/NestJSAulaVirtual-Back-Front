@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Put, Delete, Render, Logger, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Render, Logger, Body, Param, Res } from '@nestjs/common';
 import { CursoService } from './curso.service';
 import { CursoDTO } from './curso.dto';
 
@@ -28,9 +28,9 @@ export class CursoController {
     //Create POST
 
     @Post('create')
-    createCurso(@Body() data: CursoDTO){
+    createCurso(@Body() data: CursoDTO, @Res() res){
         this.logger.log(JSON.stringify(data));
-        return this.cursoService.create(data);
+        res.redirect('Curso/index');        
     }
 
     //Update GET

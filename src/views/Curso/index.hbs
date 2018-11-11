@@ -40,6 +40,17 @@
                 window.history.back();
             }
             </script>
+            <script>
+                $('.delete').on('click', function() {
+                    var id = $(this).attr('data-delete-id')
+                    $.ajax({
+                        url: '/index/' + id,
+                        type: 'DELETE'
+                    }).always(() => {
+                        window.location.href = '/index'
+                    })
+                })
+            </script>
 
             <button onclick="window.location.href='/index'">Inicio</button>
         </div> 

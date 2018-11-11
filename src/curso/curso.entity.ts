@@ -5,7 +5,7 @@ import { ProfesorEntity } from 'profesor/profesor.entity';
 
 @Entity('Curso')
 export class CursoEntity{
-    @PrimaryGeneratedColumn('uuid') id: number;
+    @PrimaryGeneratedColumn() id: number;
 
     @Column('text') nombreCurso: string;
 
