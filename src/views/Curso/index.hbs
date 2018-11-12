@@ -25,10 +25,9 @@
                     <tr>   
                         <td>{{this.nombreCurso}}</td>
                         <td><button onclick="window.location.href='update/{{this.id}}'">Edit</button>
-                        <form method="POST" action="delete/{{this.id}}?method=delete"><button class="delete" >Delete</button></td></form>                        
+                        <form method="POST" action="delete/{{this.id}}?method=delete"><button class="delete" >Delete</button></form></td>                        
                     </tr> 
-                {{/each}} 
-                </tr>
+                {{/each}}
             </table>
             <br/>
             <button onclick="window.location.href='/Curso/create'">Create</button>

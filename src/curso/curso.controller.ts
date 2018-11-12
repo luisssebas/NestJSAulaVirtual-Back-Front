@@ -43,12 +43,11 @@ export class CursoController {
         return {cursos};
     }
 
-    //Update Post
+    //Update POST
 
     @Post('update/:id')
     updateCurso(@Param('id') id: number, @Body() data: Partial<CursoDTO>, @Req() req){
         this.logger.log(JSON.stringify(data));
-        console.log(data);
         req.query.method == 'update';
         return this.cursoService.update(id, data);
     }
@@ -57,7 +56,6 @@ export class CursoController {
 
     @Post('delete/:id')
     destroyCurso(@Param('id') id:number, @Req() req){
-        console.log(id);        
         req.query.method == 'delete';
         return this.cursoService.destroy(id);
     }

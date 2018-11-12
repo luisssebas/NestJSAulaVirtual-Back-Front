@@ -1,4 +1,4 @@
-import { Controller, Put, Delete, Get, Post, Logger, Render, Body, Param } from '@nestjs/common';
+import { Controller, Put, Delete, Get, Post, Logger, Render, Body, Param, Res, Req } from '@nestjs/common';
 import { EstudianteService } from './estudiante.service';
 import { EstudianteDTO } from './estudiante.dto';
 
@@ -12,31 +12,52 @@ export class EstudianteController {
     @Get('index')
     //@UseGuards(new AuthGuard())
     @Render('Estudiante/index')
-    async showAllCursos(){
+    async showAllEstudiantes(){
         const  estudiantes = await this.estudianteService.showAll();
         return {estudiantes};
     }
 
-    @Post('create')
+    //Create GET
+
+    @Get('create')    
     @Render('Estudiante/create')
-    createCurso(@Body() data: EstudianteDTO){
-        this.logger.log(JSON.stringify(data));
-        return this.estudianteService.create(data);
+    async showEstudiantes(){
+        const  estudiantes = await this.estudianteService.showAll();
+        return {estudiantes};
     }
 
-    @Get('data/:id')
-    readCurso(@Param('id') id: number){
-        return this.estudianteService.read(id);
+    //Create POST
+
+    @Post('create')
+    createCurso(@Body() data: EstudianteDTO, @Res() res){
+        this.logger.log(JSON.stringify(data));
+        this.estudianteService.create(data);
+        res.redirect('index');
     }
 
-    @Put('update/:id')
-    updateCurso(@Param('id') id: number, @Body() data: Partial<EstudianteDTO>){
+    //Update GET
+
+    @Get('update/:id')
+    @Render('Estudiante/update')
+    async readEstudiante(@Param('id') id: number){
+        const estudiantes = await this.estudianteService.read(id);
+        return {estudiantes};
+    }
+
+    //Update POST
+
+    @Post('update/:id')
+    updateCurso(@Param('id') id: number, @Body() data: Partial<EstudianteDTO>, @Req() req){
         this.logger.log(JSON.stringify(data));
+        req.query.method == 'update';
         return this.estudianteService.update(id, data);
     }
 
+    //Delete POST
+
     @Delete('delete/:id')
-    destroyCurso(@Param('id') id:number){
+    destroyCurso(@Param('id') id:number, @Req() req){
+        req.query.method == 'delete';
         return this.estudianteService.destroy(id);
     }
 }
