@@ -5,7 +5,7 @@ import { MateriaEntity } from 'materia/materia.entity';
 
 @Entity('Tarea')
 export class TareaEntity{
-    @PrimaryGeneratedColumn('uuid') id: number;
+    @PrimaryGeneratedColumn() id: number;
 
     @Column('text') nombreTarea: string;
 

@@ -30,10 +30,10 @@
                             <td>{{this.nombreProfesor}}</td>
                             <td>{{this.apellidoProfesor}}</td>
                             <td>{{this.direccionProfesor}}</td>
-                            <td>{{this.EmailProfesor}}</td>
+                            <td>{{this.emailProfesor}}</td>
                             <td>{{this.cursoId}}</td>
-                            <td><button onclick="window.location.href='update/{{this.id}}">Edit</button>
-                            <button onclick="window.location.href='delete/{{this.id}}'">Delete</button></td>
+                            <td><button onclick="window.location.href='update/{{this.id}}'">Edit</button>
+                            <form method="POST" action="delete/{{this.id}}?method=delete"><button class="delete">Delete</button></form></td>
                         </tr> 
                     {{/each}} 
                     </tr>

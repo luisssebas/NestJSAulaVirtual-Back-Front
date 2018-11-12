@@ -1,13 +1,14 @@
 import { Controller, Put, Delete, Get, Post, Logger, Render, Body, Param, Res, Req } from '@nestjs/common';
 import { EstudianteService } from './estudiante.service';
 import { EstudianteDTO } from './estudiante.dto';
+import { CursoService } from 'curso/curso.service';
 
 @Controller('estudiante')
 export class EstudianteController {
 
     private logger = new Logger('EstudianteController');
 
-    constructor(private estudianteService: EstudianteService){}
+    constructor(private estudianteService: EstudianteService, private cursoService: CursoService){}
 
     @Get('index')
     //@UseGuards(new AuthGuard())
@@ -30,7 +31,7 @@ export class EstudianteController {
 
     @Post('create')
     createEstudiante(@Body() data: EstudianteDTO, @Res() res){
-        this.logger.log(JSON.stringify(data));
+        this.logger.log(JSON.stringify(data));        
         this.estudianteService.create(data);
         res.redirect('index');
     }

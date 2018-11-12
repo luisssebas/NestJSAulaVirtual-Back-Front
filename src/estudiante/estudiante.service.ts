@@ -3,19 +3,23 @@ import { EstudianteEntity } from './estudiante.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { EstudianteDTO } from './estudiante.dto';
+import { CursoEntity } from 'curso/curso.entity';
 
 @Injectable()
 export class EstudianteService {
 
     constructor(@InjectRepository(EstudianteEntity) 
-    private estudianteRepository: Repository<EstudianteEntity>
+    private estudianteRepository: Repository<EstudianteEntity>,
+    @InjectRepository(CursoEntity)
+    private cursoRepository: Repository<CursoEntity>
     ){}
 
     async showAll(){
-        return await this.estudianteRepository.find();
+        return await this.estudianteRepository.find({relations: ['cursos']});
     }
 
     async create(data){
+        //const curso = await this.cursoRepository.findOne({where: {id: cursoId}});
         const estudiante = await this.estudianteRepository.create(data);
         await this.estudianteRepository.save(estudiante);
         return estudiante;

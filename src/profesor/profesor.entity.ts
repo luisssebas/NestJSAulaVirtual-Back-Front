@@ -4,7 +4,7 @@ import { TareaEntity } from 'tarea/tarea.entity';
 
 @Entity('Profesor')
 export class ProfesorEntity{
-    @PrimaryGeneratedColumn('uuid') id: number;
+    @PrimaryGeneratedColumn() id: number;
 
     @Column('text') nombreProfesor: string;
 
