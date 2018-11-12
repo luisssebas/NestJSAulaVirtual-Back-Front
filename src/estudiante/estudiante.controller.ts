@@ -29,7 +29,7 @@ export class EstudianteController {
     //Create POST
 
     @Post('create')
-    createCurso(@Body() data: EstudianteDTO, @Res() res){
+    createEstudiante(@Body() data: EstudianteDTO, @Res() res){
         this.logger.log(JSON.stringify(data));
         this.estudianteService.create(data);
         res.redirect('index');
@@ -47,7 +47,7 @@ export class EstudianteController {
     //Update POST
 
     @Post('update/:id')
-    updateCurso(@Param('id') id: number, @Body() data: Partial<EstudianteDTO>, @Req() req){
+    updateEstudiante(@Param('id') id: number, @Body() data: Partial<EstudianteDTO>, @Req() req){
         this.logger.log(JSON.stringify(data));
         req.query.method == 'update';
         return this.estudianteService.update(id, data);
@@ -56,7 +56,7 @@ export class EstudianteController {
     //Delete POST
 
     @Delete('delete/:id')
-    destroyCurso(@Param('id') id:number, @Req() req){
+    destroyEstudiante(@Param('id') id:number, @Req() req){
         req.query.method == 'delete';
         return this.estudianteService.destroy(id);
     }

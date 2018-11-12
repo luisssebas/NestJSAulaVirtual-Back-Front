@@ -1,29 +1,48 @@
-<h2>Lista de Materias</h2>
-<div class="entry">
-    <table class="table">
-        <tr>
-            <th>Nombre</th>
-            <th>Horas</th>
-            <th></th>
-        </tr>
-        {{#each materias}}
-            <tr>   
-                <td>{{this.nombreMateria}}</td>
-                <td>{{this.horasMateria}}</td>
-                <td><button onclick="window.location.href='Usuario/Edit'">Edit</button>
-                <button onclick="window.location.href='Usuario/Delete'">Delete</button></td>
-            </tr> 
-        {{/each}} 
-        </tr>
-    </table>
-    <br/>
-    <button onclick="window.location.href='/Producto/Create'">Create</button>
-    <button onclick="goBack()">Regresar</button>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Curso</title>
+        <link rel="stylesheet" type="text/css" href="./css/page.css">
+    </head>
+    <body>
+        <div class="header">
+            <div class="topMenu">
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Contactenos</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="content">
+            <h2>Lista de Materias</h2>
+            <div class="entry">
+                <table class="table">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Horas</th>
+                        <th></th>
+                    </tr>
+                    {{#each materias}}
+                        <tr>   
+                            <td>{{this.nombreMateria}}</td>
+                            <td>{{this.horasMateria}}</td>
+                            <td><button onclick="window.location.href='update/{{this.id}}'">Edit</button>
+                            <form method="POST" action="delete/{{this.id}}?method=delete"><button class="delete">Delete</button></form></td>
+                        </tr> 
+                    {{/each}} 
+                    </tr>
+                </table>
+                <br/>
+                <button onclick="window.location.href='/Materia/Create'">Create</button>
+                <button onclick="goBack()">Regresar</button>
 
-    <script>
-    function goBack() {
-        window.history.back();
-    }
-    </script>
+                <script>
+                function goBack() {
+                    window.history.back();
+                }
+                </script>
 
-    <button onclick="window.location.href='/index'">Inicio</button>
+                <button onclick="window.location.href='/index'">Inicio</button>
+        </div>
+    </body>
+</html>

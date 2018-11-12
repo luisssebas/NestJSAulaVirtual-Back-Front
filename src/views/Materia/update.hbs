@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <div>
+            <title>Edit Materia</title>
+        </div>
+    </head>
+    <body>
+        <div class="header">
+            <div class="topMenu">
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Contactenos</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="content">
+            <h2>Lista de Materias</h2>
+        <div class="entry">
+            <form method="POST" action="{{materias.id}}?method=update">
+                <input type="hidden" name="id" class="form-control" value="{{materias.id}}">
+                Nombre de la Materia: <input type="text" placeholder="Materia" class="form-control" name="nombreMateria"><br>
+                Horas de la Materia: <input type="text" placeholder="Horas" class="form-control" name="horasMateria"><br>
+                <button type="submit" value="Submit form">Editar</button><br>
+            </form>               
+            <button onclick="goBack()">Regresar</button>
+            
+            <script>
+            function goBack() {
+                window.history.back();
+            }
+            </script>
+
+            <button onclick="window.location.href='/Curso/index'">Inicio</button>
+        </div>       
+    </body>
+</html>

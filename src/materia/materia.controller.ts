@@ -1,4 +1,4 @@
-import { Controller, Delete, Put, Get, Post, Logger, Render, Body, Param } from '@nestjs/common';
+import { Controller, Delete, Put, Get, Post, Logger, Render, Body, Param, Res, Req } from '@nestjs/common';
 import { MateriaService } from './materia.service';
 import { MateriaDTO } from './materia.dto';
 
@@ -12,31 +12,50 @@ export class MateriaController {
     @Get('index')
     //@UseGuards(new AuthGuard())
     @Render('Materia/index')
-    async showAllCursos(){
+    async showAllMaterias(){
         const  materias = await this.materiaService.showAll();
         return {materias};
     }
 
-    @Post('create')
+    //Create GET
+
+    @Get('create')    
     @Render('Materia/create')
-    createCurso(@Body() data: MateriaDTO){
-        this.logger.log(JSON.stringify(data));
-        return this.materiaService.create(data);
+    async showMaterias(){
+        const  materias = await this.materiaService.showAll();
+        return {materias};
     }
 
-    @Get('data/:id')
-    readCurso(@Param('id') id: number){
-        return this.materiaService.read(id);
+    //Create POST
+
+    @Post('create')
+    createMateria(@Body() data: MateriaDTO, @Res() res){
+        this.logger.log(JSON.stringify(data));
+        this.materiaService.create(data);
+        res.redirect('index');
     }
 
-    @Put('update/:id')
-    updateCurso(@Param('id') id: number, @Body() data: Partial<MateriaDTO>){
+    //Update GET
+
+    @Get('update/:id')
+    @Render('Materia/update')
+    readMateria(@Param('id') id: number){
+        const materias = this.materiaService.read(id);
+        return {materias};
+    }
+
+    //Update POST
+
+    @Post('update/:id')
+    updateMateria(@Param('id') id: number, @Body() data: Partial<MateriaDTO>, @Req() req){
         this.logger.log(JSON.stringify(data));
+        req.query.method == 'update';
         return this.materiaService.update(id, data);
     }
 
     @Delete('delete/:id')
-    destroyCurso(@Param('id') id:number){
+    destroyMateria(@Param('id') id:number, @Req() req){
+        req.query.method == 'delete';
         return this.materiaService.destroy(id);
     }
 }
