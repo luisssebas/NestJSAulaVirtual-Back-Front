@@ -17,10 +17,10 @@
         <div class="content">
             <h2>Lista de Cursos</h2>
         <div class="entry">
-            <form method="Delete">
+            <form method="POST" action="{{cursos.id}}?method=update">
                 <input type="hidden" name="id" class="form-control" value="{{cursos.id}}">
                 Nombre del Curso: <input type="text" placeholder="Curso" class="form-control" name="nombreCurso"><br>
-                <button type="submit" value="update">Editar</button><br>
+                <button type="submit" value="Submit form">Editar</button><br>
             </form>               
             <button onclick="goBack()">Regresar</button>
             

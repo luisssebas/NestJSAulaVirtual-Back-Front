@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Put, Delete, Render, Logger, Body, Param, Res } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Render, Logger, Body, Param, Res, Req } from '@nestjs/common';
 import { CursoService } from './curso.service';
 import { CursoDTO } from './curso.dto';
 
@@ -30,7 +30,8 @@ export class CursoController {
     @Post('create')
     createCurso(@Body() data: CursoDTO, @Res() res){
         this.logger.log(JSON.stringify(data));
-        res.redirect('Curso/index');        
+        this.cursoService.create(data)
+        res.redirect('index');      
     }
 
     //Update GET
@@ -42,19 +43,22 @@ export class CursoController {
         return {cursos};
     }
 
-    //Update PUT
+    //Update Post
 
-    @Put('update')
-    updateCurso(@Param('id') id: number, @Body() data: Partial<CursoDTO>){
+    @Post('update/:id')
+    updateCurso(@Param('id') id: number, @Body() data: Partial<CursoDTO>, @Req() req){
         this.logger.log(JSON.stringify(data));
         console.log(data);
+        req.query.method == 'update';
         return this.cursoService.update(id, data);
     }
 
     //Delete POST
 
-    @Delete('delete/:id')
-    destroyCurso(@Param('id') id:number){
+    @Post('delete/:id')
+    destroyCurso(@Param('id') id:number, @Req() req){
+        console.log(id);        
+        req.query.method == 'delete';
         return this.cursoService.destroy(id);
     }
 }
