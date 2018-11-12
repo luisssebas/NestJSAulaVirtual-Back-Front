@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <div>
+            <title>Edit</title>
+        </div>
+    </head>
+    <body>
+        <div class="header">
+            <div class="topMenu">
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Contactenos</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="content">
+            <h2>Lista de Cursos</h2>
+        <div class="entry">
+            <form method="POST" action="{{tareas.id}}?method=update">
+                <input type="hidden" name="id" class="form-control" value="{{tareas.id}}">
+                Nombre de la Tarea: <input type="text" placeholder="Nombre" class="form-control" name="nombreEstudiante"><br>
+                Descripcion de la Tarea: <input type="text" placeholder="Apellido" class="form-control" name="apellidoEstudiante"><br>
+                Nota de la Tarea: <input type="text" placeholder="Direccion" class="form-control" name="DireccionEstudiante"><br>
+                Estado de la Tarea: <input type="text" placeholder="Email" class="form-control" name="emailEstudiante"><br>
+                Fecha de Inicio Tarea: <input type="date" class="form-control" name="fechaInicioTarea"><br>
+                Fecha de Fin Tarea: <input type="date" "Email" class="form-control" name="fechaFinTarea"><br>
+                Profesor: <input type="text" placeholder="Curso" class="form-control" name="idProfesor"><br>
+                Estudiante: <input type="text" placeholder="Curso" class="form-control" name="idEstudiante"><br>
+                Materia: <input type="text" placeholder="Curso" class="form-control" name="idMateria"><br>
+                <button type="submit" value="Submit form">Editar</button><br>
+            </form>               
+            <button onclick="goBack()">Regresar</button>
+            
+            <script>
+            function goBack() {
+                window.history.back();
+            }
+            </script>
+
+            <button onclick="window.location.href='/Curso/index'">Inicio</button>
+        </div>       
+    </body>
+</html>

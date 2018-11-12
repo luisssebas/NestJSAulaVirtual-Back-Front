@@ -1,4 +1,4 @@
-import { Controller, Delete, Put, Get, Post, Logger, Render, Body, Param } from '@nestjs/common';
+import { Controller, Delete, Put, Get, Post, Logger, Render, Body, Param, Res, Req } from '@nestjs/common';
 import { TareaService } from './tarea.service';
 import { TareaDTO } from './tarea.dto';
 
@@ -12,31 +12,50 @@ export class TareaController {
     @Get('index')
     //@UseGuards(new AuthGuard())
     @Render('Tarea/index')
-    async showAllCursos(){
-        const  tarea = await this.tareaService.showAll();
-        return {tarea};
+    async showAllTareas(){
+        const  tareas = await this.tareaService.showAll();
+        return {tareas};
     }
+
+    //Create GET
+
+    @Get('create')    
+    @Render('Curso/create')
+    async showTareas(){
+        const  tareas = await this.tareaService.showAll();
+        return {tareas};
+    }
+
+    //Create POST
 
     @Post('create')
-    @Render('Tarea/create')
-    createCurso(@Body() data: TareaDTO){
+    createTarea(@Body() data: TareaDTO, @Res() res){
         this.logger.log(JSON.stringify(data));
-        return this.tareaService.create(data);
+        this.tareaService.create(data)
+        res.redirect('index');
     }
 
-    @Get('data/:id')
-    readCurso(@Param('id') id: number){
-        return this.tareaService.read(id);
+    //Update GET
+
+    @Get('update/:id')
+    @Render('Tarea/update')
+    async readTarea(@Param('id') id: number){
+        const tareas = await this.tareaService.read(id);
+        return {tareas};
     }
 
-    @Put('update/:id')
-    updateCurso(@Param('id') id: number, @Body() data: Partial<TareaDTO>){
+    //Update POST
+
+    @Post('update/:id')
+    updateTarea(@Param('id') id: number, @Body() data: Partial<TareaDTO>, @Req() req){
         this.logger.log(JSON.stringify(data));
+        req.query.method == 'update';
         return this.tareaService.update(id, data);
     }
 
     @Delete('delete/:id')
-    destroyCurso(@Param('id') id:number){
+    destroyTarea(@Param('id') id:number, @Req() req){
+        req.query.method == 'delete';
         return this.tareaService.destroy(id);
     }
 }
