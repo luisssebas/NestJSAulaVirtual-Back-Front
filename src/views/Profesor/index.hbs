@@ -1,35 +1,55 @@
-<h2>Lista de Profesores</h2>
-<div class="entry">
-    <table class="table">
-        <tr>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Direccion</th>
-            <th>Email</th>
-            <th>Curso</th>
-            <th></th>
-        </tr>
-        {{#each profesores}}
-            <tr>   
-                <td>{{this.nombreProfesor}}</td>
-                <td>{{this.apellidoProfesor}}</td>
-                <td>{{this.direccionProfesor}}</td>
-                <td>{{this.EmailProfesor}}</td>
-                 <td>{{this.cursoId}}</td>
-                <td><button onclick="window.location.href='Usuario/Edit'">Edit</button>
-                <button onclick="window.location.href='Usuario/Delete'">Delete</button></td>
-            </tr> 
-        {{/each}} 
-        </tr>
-    </table>
-    <br/>
-    <button onclick="window.location.href='/Producto/Create'">Create</button>
-    <button onclick="goBack()">Regresar</button>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Curso</title>
+        <link rel="stylesheet" type="text/css" href="./css/page.css">
+    </head>
+    <body>
+        <div class="header">
+            <div class="topMenu">
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Contactenos</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="content">
+            <h2>Lista de Profesores</h2>
+            <div class="entry">
+                <table class="table">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Direccion</th>
+                        <th>Email</th>
+                        <th>Curso</th>
+                        <th></th>
+                    </tr>
+                    {{#each profesores}}
+                        <tr>   
+                            <td>{{this.nombreProfesor}}</td>
+                            <td>{{this.apellidoProfesor}}</td>
+                            <td>{{this.direccionProfesor}}</td>
+                            <td>{{this.EmailProfesor}}</td>
+                            <td>{{this.cursoId}}</td>
+                            <td><button onclick="window.location.href='update/{{this.id}}">Edit</button>
+                            <button onclick="window.location.href='delete/{{this.id}}'">Delete</button></td>
+                        </tr> 
+                    {{/each}} 
+                    </tr>
+                </table>
+                <br/>
+                <button onclick="window.location.href='/Profesor/Create'">Create</button>
+                <button onclick="goBack()">Regresar</button>
 
-    <script>
-    function goBack() {
-        window.history.back();
-    }
-    </script>
+                <script>
+                function goBack() {
+                    window.history.back();
+                }
+                </script>
 
-    <button onclick="window.location.href='/index'">Inicio</button>
+                <button onclick="window.location.href='/index'">Inicio</button>
+        </div>
+    </body>
+</html>
+

@@ -1,4 +1,4 @@
-import { Controller, Delete, Put, Get, Post, Logger, Render, Body, Param } from '@nestjs/common';
+import { Controller, Delete, Put, Get, Post, Logger, Render, Body, Param, Res, Req } from '@nestjs/common';
 import { ProfesorService } from './profesor.service';
 import { ProfesorDTO } from './profesor.dto';
 
@@ -12,31 +12,50 @@ export class ProfesorController {
     @Get('index')
     //@UseGuards(new AuthGuard())
     @Render('Profesor/index')
-    async showAllCursos(){
+    async showAllProfesores(){
         const  profesores = await this.profesorService.showAll();
         return {profesores};
     }
 
-    @Post('create')
+    //Create GET
+
+    @Get('create')    
     @Render('Profesor/create')
-    createCurso(@Body() data: ProfesorDTO){
-        this.logger.log(JSON.stringify(data));
-        return this.profesorService.create(data);
+    async showProfesores(){
+        const  profesores = await this.profesorService.showAll();
+        return {profesores};
     }
 
-    @Get('data/:id')
-    readCurso(@Param('id') id: number){
-        return this.profesorService.read(id);
+    //Create POST
+
+    @Post('create')
+    createProfesor(@Body() data: ProfesorDTO, @Res() res){
+        this.logger.log(JSON.stringify(data));
+        this.profesorService.create(data);
+        res.redirect('index');  
     }
+
+    //Update GET
+
+    @Get('update/:id')
+    @Render('Profesor/update')
+    readProfesor(@Param('id') id: number){
+        const profesores = this.profesorService.read(id);
+        return {profesores};
+    }
+
+    //Update POST
 
     @Put('update/:id')
-    updateCurso(@Param('id') id: number, @Body() data: Partial<ProfesorDTO>){
+    updateProfesor(@Param('id') id: number, @Body() data: Partial<ProfesorDTO>, @Req() req){
         this.logger.log(JSON.stringify(data));
+        req.query.method == 'update';
         return this.profesorService.update(id, data);
     }
 
     @Delete('delete/:id')
-    destroyCurso(@Param('id') id:number){
+    destroyCurso(@Param('id') id:number, @Req() req){
+        req.query.method == 'delete';
         return this.profesorService.destroy(id);
     }
 }
