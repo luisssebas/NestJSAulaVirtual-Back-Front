@@ -9,13 +9,10 @@ import { CursoEntity } from 'curso/curso.entity';
 export class EstudianteService {
 
     constructor(@InjectRepository(EstudianteEntity) 
-    private estudianteRepository: Repository<EstudianteEntity>,
-    @InjectRepository(CursoEntity)
-    private cursoRepository: Repository<CursoEntity>
-    ){}
+    private estudianteRepository: Repository<EstudianteEntity>,){}
 
     async showAll(){
-        return await this.estudianteRepository.find({relations: ['cursos']});
+        return await this.estudianteRepository.find();
     }
 
     async create(data){

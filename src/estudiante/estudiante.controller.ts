@@ -8,7 +8,7 @@ export class EstudianteController {
 
     private logger = new Logger('EstudianteController');
 
-    constructor(private estudianteService: EstudianteService, private cursoService: CursoService){}
+    constructor(private estudianteService: EstudianteService){}
 
     @Get('index')
     //@UseGuards(new AuthGuard())

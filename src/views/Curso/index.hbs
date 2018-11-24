@@ -2,14 +2,16 @@
 <html>
     <head>
         <title>Curso</title>
-        <link rel="stylesheet" type="text/css" href="./css/page.css">
+        <link rel="stylesheet" type="text/css" href="/src/views/css/page.css">
     </head>
-    <body>
+    <body onload="initNotifications()">
         <div class="header">
             <div class="topMenu">
                 <ul>
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Contactenos</a></li>
+                    <li><a href="/Materia/index">Materia</a></li>
+                    <li><a href="/Estudiante/index.hbs">Estudiante</a></li>
+                    <li><a href="/Profesor/index.hbs">Profesor</a></li>
+                    <li><a href="/Tarea/index.hbs">Tarea</a></li>
                 </ul>
             </div>
         </div>
@@ -25,7 +27,7 @@
                     <tr>   
                         <td>{{this.nombreCurso}}</td>
                         <td><button onclick="window.location.href='update/{{this.id}}'">Edit</button>
-                        <form method="POST" action="delete/{{this.id}}?method=delete"><button class="delete">Delete</button></form></td>                        
+                        <form method="POST" action="delete/{{this.id}}?method=delete"><button class="delete" onclick="showNotification()">Delete</button></form></td>                        
                     </tr> 
                 {{/each}}
             </table>
@@ -37,6 +39,36 @@
             function goBack() {
                 window.history.back();
             }
+            </script>
+
+            <script type="text/javascript">
+                var notificationsEnabled = false;
+                
+                function initNotifications() {
+                    if (window.Notification) {
+                        Notification.requestPermission(function(permission) {
+                            if (permission === 'granted') {
+                                notificationsEnabled = true;
+                            } else {
+                                alert("You denied Notifications, it's so sad :(");
+                            }
+                        });
+                    } else {
+                        alert("Your browser doesn't support Notifications API");
+                    }
+                }
+                
+                function showNotification() {
+                    if (notificationsEnabled) {
+                        var notification = new Notification("SSaurel", {
+                            body : 'El dato se ah eliminado!'
+                        });
+                        
+                        setTimeout(function() { notification.close(); }, 5000);
+                    } else {
+                        alert("Notifications are disabled");
+                    }
+                }
             </script>
             
             <button onclick="window.location.href='/index'">Inicio</button>
