@@ -10,9 +10,10 @@ import { TareaModule } from './tarea/tarea.module';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { HttpErrorFilter } from 'shared/http-error.filter';
 import { LoggingInterceptor } from 'shared/logging.interceptor';
+import { UserModule } from './user/user.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(), CursoModule, EstudianteModule, MateriaModule, ProfesorModule, TareaModule],
+  imports: [TypeOrmModule.forRoot(), CursoModule, EstudianteModule, MateriaModule, ProfesorModule, TareaModule, UserModule],
   controllers: [AppController],
   providers: [AppService, {
     provide: APP_FILTER,
