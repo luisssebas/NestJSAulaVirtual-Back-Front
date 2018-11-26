@@ -47,15 +47,17 @@ export class MateriaController {
     //Update POST
 
     @Post('update/:id')
-    updateMateria(@Param('id') id: number, @Body() data: Partial<MateriaDTO>, @Req() req){
+    updateMateria(@Param('id') id: number, @Body() data: Partial<MateriaDTO>, @Req() req, @Res() res){
         this.logger.log(JSON.stringify(data));
         req.query.method == 'update';
-        return this.materiaService.update(id, data);
+        this.materiaService.update(id, data);
+        res.redirect('index');
     }
 
     @Delete('delete/:id')
-    destroyMateria(@Param('id') id:number, @Req() req){
+    destroyMateria(@Param('id') id:number, @Req() req, @Res() res){
         req.query.method == 'delete';
-        return this.materiaService.destroy(id);
+        this.materiaService.destroy(id);
+        res.redirect('index');
     }
 }

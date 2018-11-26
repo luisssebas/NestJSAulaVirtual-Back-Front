@@ -31,7 +31,6 @@ export class EstudianteController {
     @Post('create')
     createEstudiante(@Body() data: EstudianteDTO, @Res() res){
         this.logger.log(JSON.stringify(data));
-        console.log(data);
         this.estudianteService.create(data);
         res.redirect('index');
     }
@@ -49,17 +48,19 @@ export class EstudianteController {
     //Update POST
 
     @Post('update/:id')
-    updateEstudiante(@Param('id') id: number, @Body() data: Partial<EstudianteDTO>, @Req() req){
+    updateEstudiante(@Param('id') id: number, @Body() data: Partial<EstudianteDTO>, @Req() req, @Res() res){
         this.logger.log(JSON.stringify(data));
         req.query.method == 'update';
-        return this.estudianteService.update(id, data);
+        this.estudianteService.update(id, data);
+        res.redirect('index'); 
     }
 
     //Delete POST
 
     @Delete('delete/:id')
-    destroyEstudiante(@Param('id') id:number, @Req() req){
+    destroyEstudiante(@Param('id') id:number, @Req() req, @Res() res){
         req.query.method == 'delete';
-        return this.estudianteService.destroy(id);
+        this.estudianteService.destroy(id);
+        res.redirect('index'); 
     }
 }

@@ -47,15 +47,17 @@ export class ProfesorController {
     //Update POST
 
     @Put('update/:id')
-    updateProfesor(@Param('id') id: number, @Body() data: Partial<ProfesorDTO>, @Req() req){
+    updateProfesor(@Param('id') id: number, @Body() data: Partial<ProfesorDTO>, @Req() req, @Res() res){
         this.logger.log(JSON.stringify(data));
         req.query.method == 'update';
-        return this.profesorService.update(id, data);
+        this.profesorService.update(id, data);
+        res.redirect('index');
     }
 
     @Delete('delete/:id')
-    destroyCurso(@Param('id') id:number, @Req() req){
+    destroyCurso(@Param('id') id:number, @Req() req, @Res() res){
         req.query.method == 'delete';
-        return this.profesorService.destroy(id);
+        this.profesorService.destroy(id);
+        res.redirect('index');
     }
 }

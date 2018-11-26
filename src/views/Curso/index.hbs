@@ -34,7 +34,7 @@
                         <th></th>
                     </tr>
                     {{#each cursos}}
-                        <tr>   
+                        <tr>
                             <td>{{this.nombreCurso}}</td>
                             <td><button class="btn btn-info" onclick="window.location.href='update/{{this.id}}'">Edit</button>
                             <form class="delete" method="POST" action="delete/{{this.id}}?method=delete"><button class="btn btn-danger" onclick="showNotification()">Delete</button></form></td>                        

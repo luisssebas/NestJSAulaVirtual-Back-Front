@@ -47,15 +47,17 @@ export class TareaController {
     //Update POST
 
     @Post('update/:id')
-    updateTarea(@Param('id') id: number, @Body() data: Partial<TareaDTO>, @Req() req){
+    updateTarea(@Param('id') id: number, @Body() data: Partial<TareaDTO>, @Req() req, @Res() res){
         this.logger.log(JSON.stringify(data));
         req.query.method == 'update';
-        return this.tareaService.update(id, data);
+        this.tareaService.update(id, data);
+        res.redirect('index');
     }
 
     @Delete('delete/:id')
-    destroyTarea(@Param('id') id:number, @Req() req){
+    destroyTarea(@Param('id') id:number, @Req() req, @Res() res){
         req.query.method == 'delete';
-        return this.tareaService.destroy(id);
+        this.tareaService.destroy(id);
+        res.redirect('index');
     }
 }

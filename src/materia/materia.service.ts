@@ -3,12 +3,15 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { MateriaEntity } from './materia.entity';
 import { MateriaDTO } from './materia.dto';
+import { CursoEntity } from 'curso/curso.entity';
 
 @Injectable()
 export class MateriaService {
 
     constructor(@InjectRepository(MateriaEntity) 
-    private materiaRepository: Repository<MateriaEntity>
+    private materiaRepository: Repository<MateriaEntity>,
+    @InjectRepository(CursoEntity)
+    private cursoRepository:Repository<CursoEntity>
     ){}
 
     async showAll(){
@@ -16,7 +19,8 @@ export class MateriaService {
     }
 
     async create(data){
-        const materia = await this.materiaRepository.create(data);
+        const curso = await this.cursoRepository.findOne({where: {id: data.cursos}});
+        const materia = await this.materiaRepository.create({...data, cursos: curso});
         await this.materiaRepository.save(materia);
         return materia;
     }
