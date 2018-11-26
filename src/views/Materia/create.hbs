@@ -25,15 +25,39 @@
                 </div>                
             </div>
         </div>
-            <h2>Crear Curso</h2>
-            <div class="entry">
-                <form method="POST">
-                Nombre de la Materia: <input type="text" placeholder="Materia" class="form-control" name="nombreMateria"><br>
-                Horas de la Materia: <input type="text" placeholder="Horas" class="form-control" name="horasMateria"><br>
-                <button type="submit" value="create">Crear</button><br>
-                </form>
-            </div>
-            <button onclick="window.location.href='/index'">Inicio</button>
+        <div class="container body-content">
+            <h2>Crear Materia</h2>
+            <form method="POST">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-md-2" >Nombre de la Materia: </label>
+                        <div class="col-md-10">
+                            <input class="form-control text-box single-line" type="text" placeholder="Materia" name="nombreMateria">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2" >Horas de la Materia: </label>
+                        <div class="col-md-10">
+                            <input class="form-control text-box single-line" type="text" placeholder="Curso" name="horasMateria">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="control-label col-md-2" >
+                            <button class="btn btn-primary" type="submit" value="create">Create</button>
+                            </div>
+                    </div>
+                </div>
+            </form>
+            <button class="btn btn-warning" onclick="goBack()">Regresar</button>
+            <button class="btn btn-dark" onclick="window.location.href='/Curso/index'">Inicio</button>              
+        </div>
+            <button class="btn btn-warning" onclick="goBack()">Regresar</button>
+            <button class="btn btn-dark" onclick="window.location.href='/Curso/index'">Inicio</button>
         </div>
     </body>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
 </html>

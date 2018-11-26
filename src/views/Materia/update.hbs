@@ -1,37 +1,63 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <div>
-            <title>Edit Materia</title>
-        </div>
+        <title>Editar Materia</title>
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="/css/page.css">
     </head>
     <body>
         <div class="header">
-            <div class="topMenu">
-                <ul>
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Contactenos</a></li>
-                </ul>
+            <div class="container">
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/Curso/index">Curso</a></li>
+                        <li><a href="/Materia/index">Materia</a></li>
+                        <li><a href="/Estudiante/index">Estudiante</a></li>
+                        <li><a href="/Profesor/index">Profesor</a></li>
+                        <li><a href="/Tarea/index">Tarea</a></li>
+                    </ul>
+                    <form class="navbar-right">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#">Usuario</a></li>
+                            <li><a href="#">Cerrar Sesion</a></li>
+                        </ul>
+                    </form>
+                </div>                
             </div>
         </div>
-        <div class="content">
-            <h2>Lista de Materias</h2>
-        <div class="entry">
+        <div class="container body-content">
+            <h2>Editar Materia</h2>
             <form method="POST" action="{{materias.id}}?method=update">
-                <input type="hidden" name="id" class="form-control" value="{{materias.id}}">
-                Nombre de la Materia: <input type="text" placeholder="Materia" class="form-control" name="nombreMateria"><br>
-                Horas de la Materia: <input type="text" placeholder="Horas" class="form-control" name="horasMateria"><br>
-                <button type="submit" value="Submit form">Editar</button><br>
-            </form>               
-            <button onclick="goBack()">Regresar</button>
-            
-            <script>
-            function goBack() {
-                window.history.back();
-            }
-            </script>
-
+                <div class="form-horizontal">
+                    <input type="hidden" name="id" class="form-control" value="{{materias.id}}">
+                    <div class="form-group">
+                        <label class="control-label col-md-2" >Nombre de la Materia: </label>
+                        <div class="col-md-10">
+                            <input class="form-control text-box single-line" type="text" placeholder="Materia" name="nombreMateria">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2" >Horas de la Materia: </label>
+                        <div class="col-md-10">
+                            <input class="form-control text-box single-line" type="text" placeholder="Curso" name="horasMateria">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="control-label col-md-2" >
+                            <button class="btn btn-info" type="submit" value="Submit form">Create</button>
+                            </div>
+                    </div>
+                </div>
+            </form>
+            <button class="btn btn-warning" onclick="goBack()">Regresar</button>
+            <button class="btn btn-dark" onclick="window.location.href='/Curso/index'">Inicio</button>              
+        </div>
             <button onclick="window.location.href='/index'">Inicio</button>
         </div>       
     </body>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
 </html>
