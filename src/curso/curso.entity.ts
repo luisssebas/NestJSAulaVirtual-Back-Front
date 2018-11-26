@@ -12,9 +12,9 @@ export class CursoEntity{
     @OneToMany(type => EstudianteEntity, estudiante => estudiante.cursos)
     estudiantes: EstudianteEntity[];
 
-    @OneToMany(type => ProfesorEntity, profesores => profesores.nombreProfesor)
-    profesor: ProfesorEntity[];
+    @OneToMany(type => ProfesorEntity, profesores => profesores.cursos)
+    profesores: ProfesorEntity[];
 
-    @OneToMany(type => MateriaEntity, materias => materias.nombreMateria)
-    materia: MateriaEntity[];
+    @OneToMany(type => MateriaEntity, materias => materias.cursos)
+    materias: MateriaEntity[];
 }

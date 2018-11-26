@@ -1,4 +1,53 @@
-<h2>Lista de Tareas</h2>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Crear Curso</title>
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="/css/page.css">
+    </head>
+    <body>
+        <div class="header">
+            <div class="container">
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/Curso/index">Curso</a></li>
+                        <li><a href="/Materia/index">Materia</a></li>
+                        <li><a href="/Estudiante/index">Estudiante</a></li>
+                        <li><a href="/Profesor/index">Profesor</a></li>
+                        <li><a href="/Tarea/index">Tarea</a></li>
+                    </ul>
+                    <form class="navbar-right">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#">Usuario</a></li>
+                            <li><a href="#">Cerrar Sesion</a></li>
+                        </ul>
+                    </form>
+                </div>                
+            </div>
+        </div>
+        <div class="container body-content">
+            <h2>Lista de Tareas</h2>
+            <div>
+                <table>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Horas</th>
+                        <th>Curso</th>
+                        <th></th>
+                    </tr>
+                    {{#each tareas}}
+                        <tr>   
+                            <td>{{this.nombreMateria}}</td>
+                            <td>{{this.horasMateria}}</td>
+                            <th>{{this.cursoId}}</th>
+                            <td><button onclick="window.location.href='update/{{this.id}}'">Edit</button>
+                            <form method="POST" action="delete/{{this.id}}?method=delete"><button class="delete">Delete</button></form></td>
+                        </tr> 
+                    {{/each}}
+                </table>
+            </div>
+        </div>
+
 <div class="entry">
     <table class="table">
         <tr>

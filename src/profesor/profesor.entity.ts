@@ -14,11 +14,11 @@ export class ProfesorEntity{
 
     @Column('text') emailProfesor: string;
 
-    @ManyToOne(type => CursoEntity, cursos => cursos.nombreCurso)
+    @ManyToOne(type => CursoEntity, cursos => cursos.profesores)
     @JoinColumn()
-    curso: CursoEntity;
+    cursos: CursoEntity;
 
-    @OneToMany(type => TareaEntity, tareas => tareas.nombreTarea)
+    @OneToMany(type => TareaEntity, tareas => tareas.profesores)
     @JoinColumn()
-    tarea: CursoEntity[];
+    tareas: CursoEntity[];
 }

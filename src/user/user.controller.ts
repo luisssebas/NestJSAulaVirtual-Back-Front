@@ -8,7 +8,7 @@ import { ValidationPipe } from 'shared/validation.pipe';
 export class UserController {
     constructor(private usuarioService: UserService){}
 
-    @Get('Users')
+    @Get('User/login')
     async showAllUsers(){
         const users = this.usuarioService.showAll();
         return await {users};

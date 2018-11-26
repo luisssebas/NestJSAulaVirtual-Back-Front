@@ -19,15 +19,15 @@ export class TareaEntity{
 
     @CreateDateColumn() fechaFinTarea: Date;
 
-    @ManyToOne(type => ProfesorEntity, profesor => profesor.nombreProfesor)
+    @ManyToOne(type => ProfesorEntity, profesor => profesor.tareas)
     @JoinColumn()
-    profesor: ProfesorEntity;
+    profesores: ProfesorEntity;
 
-    @ManyToOne(type => EstudianteEntity, estudiantes => estudiantes.nombreEstudiante)
+    @ManyToOne(type => EstudianteEntity, estudiantes => estudiantes.tareas)
     @JoinColumn()
-    estudiante: EstudianteEntity;
+    estudiantes: EstudianteEntity;
 
-    @ManyToOne(type => MateriaEntity, materia => materia.nombreMateria)
+    @ManyToOne(type => MateriaEntity, materia => materia.tareas)
     @JoinColumn()
-    materia: MateriaEntity;
+    materias: MateriaEntity;
 }
