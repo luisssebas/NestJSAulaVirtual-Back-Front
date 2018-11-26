@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, ManyToMany, ManyToOne, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 import { CursoEntity } from 'curso/curso.entity';
 import { TareaEntity } from 'tarea/tarea.entity';
 
@@ -14,11 +14,11 @@ export class EstudianteEntity{
 
     @Column('text') emailEstudiante: string;
 
-    @ManyToOne(type => CursoEntity, cursos => cursos.nombreCurso)
+    @ManyToOne(type => CursoEntity, cursos => cursos.estudiantes)
     @JoinColumn()
-    curso: CursoEntity;
+    cursos: CursoEntity;
 
-    @OneToMany(type => TareaEntity, tareas => tareas.nombreTarea)
+    @OneToMany(type => TareaEntity, tareas => tareas.estudiante)
     @JoinColumn()
     tarea: TareaEntity[];
 }

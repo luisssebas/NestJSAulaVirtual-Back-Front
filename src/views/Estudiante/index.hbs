@@ -2,52 +2,66 @@
 <html>
     <head>
         <title>Estudiante</title>
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="/css/page.css">
     </head>
     <body>
         <div class="header">
-            <div class="topMenu">
-                <ul>
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Contactenos</a></li>
-                </ul>
+            <div class="container">
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/Curso/index">Curso</a></li>
+                        <li><a href="/Materia/index">Materia</a></li>
+                        <li><a href="/Estudiante/index">Estudiante</a></li>
+                        <li><a href="/Profesor/index">Profesor</a></li>
+                        <li><a href="/Tarea/index">Tarea</a></li>
+                    </ul>
+                    <form class="navbar-right">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#">Usuario</a></li>
+                            <li><a href="#">Cerrar Sesion</a></li>
+                        </ul>
+                    </form>
+                </div>                
             </div>
         </div>
-        <div class="content">
-            <h2>Lista de Estudiante</h2>
-        <div class="entry">
-            <table class="table">
-                <tr>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Direccion</th>
-                    <th>Email</th>
-                    <th>Curso</th>
-                    <th></th>
-                </tr>
-                {{#each estudiantes}}
-                    <tr>   
-                        <td>{{this.nombreEstudiante}}</td>
-                        <td>{{this.apellidoEstudiante}}</td>
-                        <td>{{this.direccionEstudiante}}</td>
-                        <td>{{this.emailEstudiante}}</td>
-                        <td>{{this.cursoId}}</td>
-                        <td><button onclick="window.location.href='update/{{this.id}}'">Edit</button>
-                        <form method="POST" action="delete/{{this.id}}?method=delete"><button class="delete">Delete</button></form></td>
-                    </tr> 
-                {{/each}}
-            </table>
-            <br/>
-            <button onclick="window.location.href='/Estudiante/Create'">Create</button>
-            <button onclick="goBack()">Regresar</button>
-
-            <script>
-            function goBack() {
-                window.history.back();
-            }
-            </script>
-
-            <button onclick="window.location.href='/index'">Inicio</button>
-        </div>
+        <div class="container body-content">
+            <h2>Lista de Estudiantes</h2>
+            <div class="entry">
+                <table class="table">
+                    <tr class="odd">
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Direccion</th>
+                        <th>Email</th>
+                        <th>Curso</th>
+                        <th></th>
+                    </tr>
+                    {{#each estudiantes}}
+                        <tr>   
+                            <td>{{this.nombreEstudiante}}</td>
+                            <td>{{this.apellidoEstudiante}}</td>
+                            <td>{{this.direccionEstudiante}}</td>
+                            <td>{{this.emailEstudiante}}</td>
+                            <td>{{this.cursos.nombreCurso}}</td>
+                            <td><button class="btn btn-info" onclick="window.location.href='update/{{this.id}}'">Edit</button>
+                            <form class="delete" method="POST" action="delete/{{this.id}}?method=delete"><button class="btn btn-danger">Delete</button></form></td>
+                        </tr> 
+                    {{/each}}
+                </table>
+                <br/>
+                <button class="btn btn-primary" onclick="window.location.href='/Estudiante/Create'">Create</button>
+                <button class="btn btn-warning" onclick="goBack()">Regresar</button>
+                <button class="btn btn-dark" onclick="window.location.href='/index'">Inicio</button>
+            </div>  
+            <footer>
+                <br><p>Aula Virtual</p>
+            </footer>      
+        </div>        
     </body>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
 </html>

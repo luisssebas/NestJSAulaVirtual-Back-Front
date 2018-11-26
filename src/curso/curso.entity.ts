@@ -9,8 +9,8 @@ export class CursoEntity{
 
     @Column('text') nombreCurso: string;
 
-    @OneToMany(type => EstudianteEntity, estudiantes => estudiantes.nombreEstudiante)
-    estudiante: EstudianteEntity[];
+    @OneToMany(type => EstudianteEntity, estudiante => estudiante.cursos)
+    estudiantes: EstudianteEntity[];
 
     @OneToMany(type => ProfesorEntity, profesores => profesores.nombreProfesor)
     profesor: ProfesorEntity[];

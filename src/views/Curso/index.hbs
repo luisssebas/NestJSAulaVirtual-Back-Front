@@ -2,76 +2,84 @@
 <html>
     <head>
         <title>Curso</title>
-        <link rel="stylesheet" type="text/css" href="/public/css/page.css">
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="/css/page.css">
     </head>
-    <body onload="initNotifications()">
+    <body>
         <div class="header">
-            <div class="topMenu">
-                <ul>
-                    <li><a href="/Materia/index">Materia</a></li>
-                    <li><a href="/Estudiante/index.hbs">Estudiante</a></li>
-                    <li><a href="/Profesor/index.hbs">Profesor</a></li>
-                    <li><a href="/Tarea/index.hbs">Tarea</a></li>
-                </ul>
+            <div class="container">
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/Curso/index">Curso</a></li>
+                        <li><a href="/Materia/index">Materia</a></li>
+                        <li><a href="/Estudiante/index">Estudiante</a></li>
+                        <li><a href="/Profesor/index">Profesor</a></li>
+                        <li><a href="/Tarea/index">Tarea</a></li>
+                    </ul>
+                    <form class="navbar-right">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#">Usuario</a></li>
+                            <li><a href="#">Cerrar Sesion</a></li>
+                        </ul>
+                    </form>
+                </div>                
             </div>
         </div>
-        <div class="content">
+        <div class="container body-content">
             <h2>Lista de Cursos</h2>
-        <div class="entry">
-            <table class="table">
-                <tr>
-                    <th>Nombre</th>
-                    <th></th>
-                </tr>
-                {{#each cursos}}
-                    <tr>   
-                        <td>{{this.nombreCurso}}</td>
-                        <td><button onclick="window.location.href='update/{{this.id}}'">Edit</button>
-                        <form method="POST" action="delete/{{this.id}}?method=delete"><button class="delete" onclick="showNotification()">Delete</button></form></td>                        
-                    </tr> 
-                {{/each}}
-            </table>
-            <br/>
-            <button onclick="window.location.href='/Curso/create'">Create</button>
-            <button onclick="goBack()">Regresar</button>
-
-            <script>
-            function goBack() {
-                window.history.back();
-            }
-            </script>
-
-            <script type="text/javascript">
-                var notificationsEnabled = false;
-                
-                function initNotifications() {
-                    if (window.Notification) {
-                        Notification.requestPermission(function(permission) {
-                            if (permission === 'granted') {
-                                notificationsEnabled = true;
-                            } else {
-                                alert("You denied Notifications, it's so sad :(");
-                            }
-                        });
-                    } else {
-                        alert("Your browser doesn't support Notifications API");
-                    }
-                }
-                
-                function showNotification() {
-                    if (notificationsEnabled) {
-                        var notification = new Notification("SSaurel", {
-                            body : 'El dato se ah eliminado!'
-                        });
-                        
-                        setTimeout(function() { notification.close(); }, 5000);
-                    } else {
-                        alert("Notifications are disabled");
-                    }
-                }
-            </script>
-            
-            <button onclick="window.location.href='/index'">Inicio</button>
+            <div class="entry">
+                <table class="table">
+                    <tr class="odd">
+                        <th>Nombre</th>
+                        <th></th>
+                    </tr>
+                    {{#each cursos}}
+                        <tr>   
+                            <td>{{this.nombreCurso}}</td>
+                            <td><button class="btn btn-info" onclick="window.location.href='update/{{this.id}}'">Edit</button>
+                            <form class="delete" method="POST" action="delete/{{this.id}}?method=delete"><button class="btn btn-danger" onclick="showNotification()">Delete</button></form></td>                        
+                        </tr> 
+                    {{/each}}
+                </table>
+                <br/>
+                <button class="btn btn-primary" onclick="window.location.href='/Curso/create'">Create</button>
+                <button class="btn btn-warning" onclick="goBack()">Regresar</button>
+                <button class="btn btn-dark" onclick="window.location.href='/index'">Inicio</button>
+            </div>
         </div> 
     </body>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+    <script type="text/javascript">
+        var notificationsEnabled = false;
+                
+        function initNotifications() {
+            if (window.Notification) {
+                Notification.requestPermission(function(permission) {
+                    if (permission === 'granted') {
+                        notificationsEnabled = true;
+                    } else {
+                        alert("You denied Notifications, it's so sad :(");
+                    }
+                });
+            } else {
+                alert("Your browser doesn't support Notifications API");
+            }
+        }
+                
+        function showNotification() {
+            if (notificationsEnabled) {
+                var notification = new Notification("SSaurel", {
+                    body : 'El dato se ah eliminado!'
+                });
+                        
+                setTimeout(function() { notification.close(); }, 5000);
+            } else {
+                alert("Notifications are disabled");
+            }
+        }
+    </script>
 </html>

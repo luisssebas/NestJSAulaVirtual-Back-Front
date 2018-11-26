@@ -1,31 +1,83 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Crear Estudiante</title>
-        <link rel="stylesheet" type="text/css" href="./css/page.css">
+        <title>Crear Curso</title>
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="/css/page.css">
     </head>
     <body>
-        <div class="content">
-            <div class="header">
-                <div class="topMenu">
-                    <ul>
-                        <li><a href="#">Inicio</a></li>
-                        <li><a href="#">Contactenos</a></li>
+        <div class="header">
+            <div class="container">
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/Curso/index">Curso</a></li>
+                        <li><a href="/Materia/index">Materia</a></li>
+                        <li><a href="/Estudiante/index">Estudiante</a></li>
+                        <li><a href="/Profesor/index">Profesor</a></li>
+                        <li><a href="/Tarea/index">Tarea</a></li>
                     </ul>
-                </div>
+                    <form class="navbar-right">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#">Usuario</a></li>
+                            <li><a href="#">Cerrar Sesion</a></li>
+                        </ul>
+                    </form>
+                </div>                
             </div>
+        </div>
+        <div class="container body-content">
             <h2>Crear Estudiante</h2>
-            <div class="entry">
-                <form method="POST">
-                Nombre del Estudiante: <input type="text" placeholder="Nombre" class="form-control" name="nombreEstudiante"><br>
-                Apellido del Estudiante: <input type="text" placeholder="Apellido" class="form-control" name="apellidoEstudiante"><br>
-                Direccion del Estudiante: <input type="text" placeholder="Direccion" class="form-control" name="direccionEstudiante"><br>
-                Email Estudiante: <input type="text" placeholder="Email" class="form-control" name="emailEstudiante"><br>
-                Curso: <input type="text" placeholder="Curso" class="form-control" name="cursoId"><br>
-                <button type="submit" value="create">Crear</button><br>
-                </form>
-            </div>
-            <button onclick="window.location.href='/index'">Inicio</button>
+            <form method="POST">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-md-2" >Nombre del Estudiante: </label>
+                        <div class="col-md-10">
+                            <input class="form-control text-box single-line" type="text" placeholder="Nombre" name="nombreEstudiante">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2" >Apellido del Estudiante: </label>
+                        <div class="col-md-10">
+                            <input class="form-control text-box single-line" type="text" placeholder="Apellido" name="apellidoEstudiante">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2" >Direccion del Estudiante: </label>
+                        <div class="col-md-10">
+                            <input class="form-control text-box single-line" type="text" placeholder="Direccion" name="direccionEstudiante">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2" >Email del Estudiante: </label>
+                        <div class="col-md-10">
+                            <input class="form-control text-box single-line" type="text" placeholder="Email" name="emailEstudiante">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2" >Curso del Estudiante: </label>
+                        <div class="col-md-10">                            
+                            <select class="form-control" name="cursos">
+                                {{#each estudiantes}}
+                                    <option value="{{this.cursos.id}}">{{this.cursos.nombreCurso}}</option>
+                                {{/each}}
+                            </select>                            
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="control-label col-md-2" >
+                            <button class="btn btn-primary" type="submit" value="create">Create</button>
+                            </div>
+                    </div>
+                </div>
+            </form>
+            <button class="btn btn-warning" onclick="goBack()">Regresar</button>
+            <button class="btn btn-dark" onclick="window.location.href='/Curso/index'">Inicio</button>              
         </div>
     </body>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
 </html>

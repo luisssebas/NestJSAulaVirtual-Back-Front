@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Put, Delete, Render, Logger, Body, Param, Res, Req } from '@nestjs/common';
+import { Controller, Get, Post, Render, Logger, Body, Param, Res, Req } from '@nestjs/common';
 import { CursoService } from './curso.service';
 import { CursoDTO } from './curso.dto';
 

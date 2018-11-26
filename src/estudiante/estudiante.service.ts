@@ -9,15 +9,19 @@ import { CursoEntity } from 'curso/curso.entity';
 export class EstudianteService {
 
     constructor(@InjectRepository(EstudianteEntity) 
-    private estudianteRepository: Repository<EstudianteEntity>,){}
+    private estudianteRepository: Repository<EstudianteEntity>,
+    @InjectRepository(CursoEntity)
+    private cursoRepository:Repository<CursoEntity>
+    ){}
+
 
     async showAll(){
-        return await this.estudianteRepository.find();
+        return await this.estudianteRepository.find({relations: ['cursos']});
     }
 
     async create(data){
-        //const curso = await this.cursoRepository.findOne({where: {id: cursoId}});
-        const estudiante = await this.estudianteRepository.create(data);
+        const curso = await this.cursoRepository.findOne({where: {id: data.cursos}});
+        const estudiante = await this.estudianteRepository.create({...data, cursos: curso});
         await this.estudianteRepository.save(estudiante);
         return estudiante;
     }

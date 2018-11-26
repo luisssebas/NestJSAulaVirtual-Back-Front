@@ -1,3 +1,16 @@
 body{
-    background-color: #999;	
+    background-color: antiquewhite;	
+}
+.header{
+    background-color: #222222;
+    border-color: #080808;
+}
+.delete{
+    margin: -34px 0 -14px 58px;
+}
+.col-md-10 input{
+    max-width: 280px;
+}
+.col-md-10 select{
+    max-width: 280px;
 }

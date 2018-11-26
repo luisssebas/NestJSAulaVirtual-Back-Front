@@ -1,7 +1,7 @@
 import { Controller, Put, Delete, Get, Post, Logger, Render, Body, Param, Res, Req } from '@nestjs/common';
 import { EstudianteService } from './estudiante.service';
 import { EstudianteDTO } from './estudiante.dto';
-import { CursoService } from 'curso/curso.service';
+import { Curso } from 'curso/curso.decorator';
 
 @Controller('estudiante')
 export class EstudianteController {
@@ -31,7 +31,8 @@ export class EstudianteController {
 
     @Post('create')
     createEstudiante(@Body() data: EstudianteDTO, @Res() res){
-        this.logger.log(JSON.stringify(data));        
+        this.logger.log(JSON.stringify(data));
+        console.log(data);
         this.estudianteService.create(data);
         res.redirect('index');
     }
@@ -41,6 +42,7 @@ export class EstudianteController {
     @Get('update/:id')
     @Render('Estudiante/update')
     async readEstudiante(@Param('id') id: number){
+        const estTodo = await this.estudianteService.showAll();
         const estudiantes = await this.estudianteService.read(id);
         return {estudiantes};
     }
