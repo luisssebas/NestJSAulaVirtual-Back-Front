@@ -19,6 +19,5 @@ export class ProfesorEntity{
     cursos: CursoEntity;
 
     @OneToMany(type => TareaEntity, tareas => tareas.profesores)
-    @JoinColumn()
-    tareas: CursoEntity[];
+    tareas: TareaEntity[];
 }

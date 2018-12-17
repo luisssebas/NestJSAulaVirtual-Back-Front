@@ -5,7 +5,7 @@
         <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="/css/page.css">
     </head>
-    <body>
+    <body onload="initNotifications()">
         <div class="header">
             <div class="container">
                 <div class="navbar-collapse collapse">
@@ -37,7 +37,7 @@
                     </div>
                     <div class="form-group">
                         <div class="control-label col-md-2" >
-                            <button class="btn btn-primary" type="submit" value="create">Create</button>
+                            <button class="btn btn-primary" onclick="showNotification()" type="submit" value="create">Create</button>
                             </div>
                     </div>
                 </div>
@@ -49,6 +49,36 @@
     <script>
         function goBack() {
             window.history.back();
+        }
+    </script>
+    <script type="text/javascript">
+	var notificationsEnabled = false;
+	
+        function initNotifications() {
+            if (window.Notification) {
+                Notification.requestPermission(function(permission) {
+                    if (permission === 'granted') {
+                        notificationsEnabled = true;
+                    } else {
+                        alert("Las notificaciones estan desactivadas!");
+                    }
+                });
+            } else {
+                alert("El buscador no admite notificaciones!");
+            }
+        }
+        
+        function showNotification() {
+            if (notificationsEnabled) {
+                var notification = new Notification("Aula Virtual", {
+                    body : 'Dato Creado!',
+                    icon : 'https://cdn-pro.elsalvador.com/wp-content/uploads/2018/11/pikachu1-1.jpg'
+                });
+                
+                setTimeout(function() { notification.close(); }, 5000);
+            } else {
+                alert("Las Notifications estan desactivadas");
+            }
         }
     </script>
 </html>

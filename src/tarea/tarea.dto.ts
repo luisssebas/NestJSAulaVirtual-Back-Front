@@ -11,15 +11,15 @@ export interface TareaDTO{
 
     notaTarea: number;
 
-    estadoTarea: boolean;
+    estadoTarea: string;
 
     fechaInicioTarea: Date;
 
     fechaFinTarea: Date;
 
-    profesor: ProfesorEntity;
+    profesores: ProfesorEntity;
 
-    estudiante: EstudianteEntity;
+    estudiantes: EstudianteEntity;
 
-    materia: MateriaEntity;
+    materias: MateriaEntity;
 }

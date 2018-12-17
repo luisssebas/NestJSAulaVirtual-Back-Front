@@ -6,10 +6,13 @@ import { TareaEntity } from './tarea.entity';
 import { MateriaEntity } from 'materia/materia.entity';
 import { EstudianteEntity } from 'estudiante/estudiante.entity';
 import { ProfesorEntity } from 'profesor/profesor.entity';
+import { MateriaService } from 'materia/materia.service';
+import { EstudianteService } from 'estudiante/estudiante.service';
+import { ProfesorService } from 'profesor/profesor.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([TareaEntity, MateriaEntity, EstudianteEntity, ProfesorEntity])],
   controllers: [TareaController],
-  providers: [TareaService]
+  providers: [TareaService/*,MateriaService,EstudianteService,ProfesorService*/]
 })
 export class TareaModule {}

@@ -1,6 +1,7 @@
-import { Controller, Get, Post, Render, Logger, Body, Param, Res, Req } from '@nestjs/common';
+import { Controller, Get, Post, Render, Logger, Body, Param, Res, Req} from '@nestjs/common';
 import { CursoService } from './curso.service';
 import { CursoDTO } from './curso.dto';
+import { from } from 'rxjs';
 
 @Controller('curso')
 export class CursoController {
@@ -13,6 +14,9 @@ export class CursoController {
     @Render('Curso/index')
     async showAllCursos(){
         const  cursos = await this.cursoService.showAll();
+        //this.logger.log(JSON.stringify(num));
+        var count = Object.keys(cursos).length;
+        console.log(count);
         return {cursos};
     }
 
@@ -59,6 +63,6 @@ export class CursoController {
     destroyCurso(@Param('id') id:number, @Req() req, @Res() res){
         req.query.method == 'delete';
         this.cursoService.destroy(id);
-        res.redirect('index');
+        res.redirect('/Curso/index');
     }
 }

@@ -1,44 +1,115 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <div>
-            <title>Edit</title>
-        </div>
+        <title>Crear Tarea</title>
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="/css/page.css">
     </head>
-    <body>
+    <body onload="initNotifications()">
         <div class="header">
-            <div class="topMenu">
-                <ul>
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Contactenos</a></li>
-                </ul>
+            <div class="container">
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/Curso/index">Curso</a></li>
+                        <li><a href="/Materia/index">Materia</a></li>
+                        <li><a href="/Estudiante/index">Estudiante</a></li>
+                        <li><a href="/Profesor/index">Profesor</a></li>
+                        <li><a href="/Tarea/index">Tarea</a></li>
+                    </ul>
+                    <form class="navbar-right">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#">Usuario</a></li>
+                            <li><a href="#">Cerrar Sesion</a></li>
+                        </ul>
+                    </form>
+                </div>                
             </div>
         </div>
-        <div class="content">
-            <h2>Lista de Cursos</h2>
-        <div class="entry">
+        <div class="container body-content">
+            <h2>Editar Tarea</h2>
             <form method="POST" action="{{tareas.id}}?method=update">
                 <input type="hidden" name="id" class="form-control" value="{{tareas.id}}">
-                Nombre de la Tarea: <input type="text" placeholder="Nombre" class="form-control" name="nombreEstudiante"><br>
-                Descripcion de la Tarea: <input type="text" placeholder="Apellido" class="form-control" name="apellidoEstudiante"><br>
-                Nota de la Tarea: <input type="text" placeholder="Direccion" class="form-control" name="DireccionEstudiante"><br>
-                Estado de la Tarea: <input type="text" placeholder="Email" class="form-control" name="emailEstudiante"><br>
-                Fecha de Inicio Tarea: <input type="date" class="form-control" name="fechaInicioTarea"><br>
-                Fecha de Fin Tarea: <input type="date" "Email" class="form-control" name="fechaFinTarea"><br>
-                Profesor: <input type="text" placeholder="Curso" class="form-control" name="idProfesor"><br>
-                Estudiante: <input type="text" placeholder="Curso" class="form-control" name="idEstudiante"><br>
-                Materia: <input type="text" placeholder="Curso" class="form-control" name="idMateria"><br>
-                <button type="submit" value="Submit form">Editar</button><br>
-            </form>               
-            <button onclick="goBack()">Regresar</button>
-            
-            <script>
-            function goBack() {
-                window.history.back();
-            }
-            </script>
-
-            <button onclick="window.location.href='/Curso/index'">Inicio</button>
-        </div>       
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-md-2" >Nombre de la Tarea: </label>
+                        <div class="col-md-10">
+                            <input class="form-control text-box single-line" type="text" name="nombreTarea" placeholder="nombre">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2" >Descripcion de la Tarea: </label>
+                        <div class="col-md-10">
+                            <input class="form-control text-box single-line" type="text" name="descripcionTarea" placeholder="descripcion">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2" >Nota de la Tarea: </label>
+                        <div class="col-md-10">
+                            <input class="form-control text-box single-line" type="text" name="notaTarea" placeholder="Nota">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2" >Estado de la Tarea: </label>
+                        <div class="col-md-10">
+                            <input class="form-control text-box single-line" type="text" name="estadoTarea" placeholder="estado">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2" >Fecha de Inicio Tarea: </label>
+                        <div class="col-md-10">
+                            <input class="form-control text-box single-line" type="date" name="fechaInicioTarea">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2" >Fecha de Fin Tarea: </label>
+                        <div class="col-md-10">
+                            <input class="form-control text-box single-line" type="date" name="fechaFinTarea">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2" >Profesor: </label>
+                        <div class="col-md-10">                            
+                            <select class="form-control" name="profesores">
+                                {{#each profesores}}
+                                    <option value="{{this.id}}">{{this.nombreProfesor}}</option>
+                                {{/each}}
+                            </select>                            
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2" >Estudiante: </label>
+                        <div class="col-md-10">                            
+                            <select class="form-control" name="estudiantes">
+                                {{#each estudiantes}}
+                                    <option value="{{this.id}}">{{this.nombreEstudiante}}</option>
+                                {{/each}}
+                            </select>                            
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2" >Materia: </label>
+                        <div class="col-md-10">                            
+                            <select class="form-control" name="materias">
+                                {{#each materias}}
+                                    <option value="{{this.id}}">{{this.nombreMateria}}</option>
+                                {{/each}}
+                            </select>                            
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="control-label col-md-2" >
+                            <button class="btn btn-info" type="submit" value="Submit form">Edit</button>
+                            </div>
+                    </div>
+                </div>
+            </form>
+            <button class="btn btn-warning" onclick="goBack()">Regresar</button>
+            <button class="btn btn-dark" onclick="window.location.href='/Curso/index'">Inicio</button>              
+        </div>
     </body>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
 </html>

@@ -1,13 +1,14 @@
 import { Controller, Delete, Put, Get, Post, Logger, Render, Body, Param, Res, Req } from '@nestjs/common';
 import { ProfesorService } from './profesor.service';
 import { ProfesorDTO } from './profesor.dto';
+import { CursoService } from 'curso/curso.service';
 
 @Controller('profesor')
 export class ProfesorController {
 
     private logger = new Logger('ProfesorController');
 
-    constructor(private profesorService: ProfesorService){}
+    constructor(private profesorService: ProfesorService, private cursoService: CursoService){}
 
     @Get('index')
     //@UseGuards(new AuthGuard())
@@ -23,7 +24,8 @@ export class ProfesorController {
     @Render('Profesor/create')
     async showProfesores(){
         const  profesores = await this.profesorService.showAll();
-        return {profesores};
+        const cursos = await this.cursoService.showAll();
+        return {profesores,cursos};
     }
 
     //Create POST
@@ -39,9 +41,10 @@ export class ProfesorController {
 
     @Get('update/:id')
     @Render('Profesor/update')
-    readProfesor(@Param('id') id: number){
-        const profesores = this.profesorService.read(id);
-        return {profesores};
+    async readProfesor(@Param('id') id: number){
+        const cursos = await this.cursoService.showAll();
+        const profesores = await this.profesorService.read(id);
+        return {profesores,cursos};
     }
 
     //Update POST

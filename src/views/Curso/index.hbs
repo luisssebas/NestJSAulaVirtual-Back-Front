@@ -5,7 +5,7 @@
         <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="/css/page.css">
     </head>
-    <body>
+    <body onload="initNotifications()">
         <div class="header">
             <div class="container">
                 <div class="navbar-collapse collapse">
@@ -54,8 +54,8 @@
         }
     </script>
     <script type="text/javascript">
-        var notificationsEnabled = false;
-                
+	var notificationsEnabled = false;
+	
         function initNotifications() {
             if (window.Notification) {
                 Notification.requestPermission(function(permission) {
@@ -69,17 +69,22 @@
                 alert("Your browser doesn't support Notifications API");
             }
         }
-                
+        
         function showNotification() {
             if (notificationsEnabled) {
-                var notification = new Notification("SSaurel", {
-                    body : 'El dato se ah eliminado!'
+                var notification = new Notification("Aula Virtual", {
+                    body : 'Dato eliminado!'
                 });
-                        
+                
                 setTimeout(function() { notification.close(); }, 5000);
             } else {
                 alert("Notifications are disabled");
             }
         }
+    </script>
+    <script type="text/javascript">
+        $(function(){
+            $("#header").load("/header.hbs");
+        });
     </script>
 </html>

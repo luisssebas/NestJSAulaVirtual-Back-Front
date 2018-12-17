@@ -58,8 +58,8 @@
                         <label class="control-label col-md-2" >Curso del Profesor: </label>
                         <div class="col-md-10">                            
                             <select class="form-control" name="cursos">
-                                {{#each profesores}}
-                                    <option value="{{this.cursos.id}}">{{this.cursos.nombreCurso}}</option>
+                                {{#each cursos}}
+                                    <option value="{{this.id}}">{{this.nombreCurso}}</option>
                                 {{/each}}
                             </select>                            
                         </div>

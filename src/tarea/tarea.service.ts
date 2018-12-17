@@ -13,11 +13,11 @@ export class TareaService {
     constructor(@InjectRepository(TareaEntity) 
     private tareaRepository: Repository<TareaEntity>,
     @InjectRepository(MateriaEntity)
-    private materiaRepository:Repository<MateriaEntity>,
+    private materiaRepository: Repository<MateriaEntity>,
     @InjectRepository(EstudianteEntity)
-    private estudianteRepository:Repository<EstudianteEntity>,
+    private estudianteRepository: Repository<EstudianteEntity>,
     @InjectRepository(ProfesorEntity)
-    private profesorRepository:Repository<ProfesorEntity>
+    private profesorRepository: Repository<ProfesorEntity>,
     ){}
 
     async showAll(){
@@ -28,7 +28,7 @@ export class TareaService {
         const materia = await this.materiaRepository.findOne({where: {id: data.materias}});
         const estudiante = await this.estudianteRepository.findOne({where: {id: data.estudiantes}});
         const profesor = await this.profesorRepository.findOne({where: {id: data.profesores}});
-        const tarea = await this.estudianteRepository.create({...data, materias:materia, profesores:profesor, estudiantes:estudiante});
+        const tarea = await this.tareaRepository.create({...data, materias:materia, profesores:profesor, estudiantes:estudiante});
         await this.tareaRepository.save(tarea);
         return tarea;
     }

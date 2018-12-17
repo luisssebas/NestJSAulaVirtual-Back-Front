@@ -1,5 +1,6 @@
 import { Controller, Put, Delete, Get, Post, Logger, Render, Body, Param, Res, Req } from '@nestjs/common';
 import { EstudianteService } from './estudiante.service';
+import { CursoService } from 'curso/curso.service';
 import { EstudianteDTO } from './estudiante.dto';
 
 @Controller('estudiante')
@@ -7,7 +8,7 @@ export class EstudianteController {
 
     private logger = new Logger('EstudianteController');
 
-    constructor(private estudianteService: EstudianteService){}
+    constructor(private estudianteService: EstudianteService, private cursoService: CursoService){}
 
     @Get('index')
     //@UseGuards(new AuthGuard())
@@ -23,7 +24,8 @@ export class EstudianteController {
     @Render('Estudiante/create')
     async showEstudiantes(){
         const  estudiantes = await this.estudianteService.showAll();
-        return {estudiantes};
+        const cursos = await this.cursoService.showAll();
+        return {estudiantes, cursos};
     }
 
     //Create POST
@@ -40,9 +42,9 @@ export class EstudianteController {
     @Get('update/:id')
     @Render('Estudiante/update')
     async readEstudiante(@Param('id') id: number){
-        const estTodo = await this.estudianteService.showAll();
+        const cursos = await this.cursoService.showAll();
         const estudiantes = await this.estudianteService.read(id);
-        return {estudiantes};
+        return {estudiantes,cursos};
     }
 
     //Update POST

@@ -1,13 +1,14 @@
 import { Controller, Delete, Put, Get, Post, Logger, Render, Body, Param, Res, Req } from '@nestjs/common';
 import { MateriaService } from './materia.service';
 import { MateriaDTO } from './materia.dto';
+import { CursoService } from 'curso/curso.service';
 
 @Controller('materia')
 export class MateriaController {
 
     private logger = new Logger('MateriaController');
 
-    constructor(private materiaService: MateriaService){}
+    constructor(private materiaService: MateriaService, private cursoService: CursoService){}
 
     @Get('index')
     //@UseGuards(new AuthGuard())
@@ -40,8 +41,9 @@ export class MateriaController {
     @Get('update/:id')
     @Render('Materia/update')
     readMateria(@Param('id') id: number){
+        const cursos = this.cursoService.showAll();
         const materias = this.materiaService.read(id);
-        return {materias};
+        return {materias, cursos};
     }
 
     //Update POST

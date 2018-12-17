@@ -13,13 +13,13 @@ export class TareaEntity{
 
     @Column('decimal') notaTarea: number;
 
-    @Column('text') estadoTarea: boolean;
+    @Column('text') estadoTarea: string;
 
     @CreateDateColumn() fechaInicioTarea: Date;
 
     @CreateDateColumn() fechaFinTarea: Date;
 
-    @ManyToOne(type => ProfesorEntity, profesor => profesor.tareas)
+    @ManyToOne(type => ProfesorEntity, profesores => profesores.tareas)
     @JoinColumn()
     profesores: ProfesorEntity;
 
@@ -27,7 +27,7 @@ export class TareaEntity{
     @JoinColumn()
     estudiantes: EstudianteEntity;
 
-    @ManyToOne(type => MateriaEntity, materia => materia.tareas)
+    @ManyToOne(type => MateriaEntity, materias => materias.tareas)
     @JoinColumn()
     materias: MateriaEntity;
 }
