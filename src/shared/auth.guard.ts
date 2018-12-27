@@ -24,7 +24,5 @@ export class AuthGuard implements CanActivate {
         const message = 'Token error: ' + (err.message || err.name);
         throw new HttpException(message, HttpStatus.FORBIDDEN);
     }
-    
-
   }
 }

@@ -13,6 +13,6 @@ import { ProfesorService } from 'profesor/profesor.service';
 @Module({
   imports: [TypeOrmModule.forFeature([TareaEntity, MateriaEntity, EstudianteEntity, ProfesorEntity])],
   controllers: [TareaController],
-  providers: [TareaService/*,MateriaService,EstudianteService,ProfesorService*/]
+  providers: [TareaService/*EstudianteService,MateriaService,ProfesorService*/]
 })
 export class TareaModule {}

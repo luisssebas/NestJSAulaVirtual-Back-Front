@@ -30,4 +30,6 @@ export class TareaEntity{
     @ManyToOne(type => MateriaEntity, materias => materias.tareas)
     @JoinColumn()
     materias: MateriaEntity;
+
+    
 }

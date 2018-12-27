@@ -6,25 +6,6 @@
         <link rel="stylesheet" type="text/css" href="/css/page.css">
     </head>
     <body onload="initNotifications()">
-        <div class="header">
-            <div class="container">
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a href="/Curso/index">Curso</a></li>
-                        <li><a href="/Materia/index">Materia</a></li>
-                        <li><a href="/Estudiante/index">Estudiante</a></li>
-                        <li><a href="/Profesor/index">Profesor</a></li>
-                        <li><a href="/Tarea/index">Tarea</a></li>
-                    </ul>
-                    <form class="navbar-right">
-                        <ul class="nav navbar-nav">
-                            <li><a href="#">Usuario</a></li>
-                            <li><a href="#">Cerrar Sesion</a></li>
-                        </ul>
-                    </form>
-                </div>                
-            </div>
-        </div>
         <div class="container body-content">
             <h2>Editar Tarea</h2>
             <form method="POST">
@@ -32,69 +13,39 @@
                     <div class="form-group">
                         <label class="control-label col-md-2" >Nombre de la Tarea: </label>
                         <div class="col-md-10">
-                            <input class="form-control text-box single-line" type="text" placeholder="nombreTarea" name="nombreCurso">
+                            <input class="form-control text-box single-line" type="text" name="nombreTarea" placeholder="nombreTarea">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-2" >Descripcion de la Tarea: </label>
                         <div class="col-md-10">
-                            <input class="form-control text-box single-line" type="text" placeholder="descripcionTarea" name="nombreCurso">
+                            <input class="form-control text-box single-line" type="text" name="descripcionTarea" placeholder="descripcionTarea">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-2" >Nota de la Tarea: </label>
                         <div class="col-md-10">
-                            <input class="form-control text-box single-line" type="text" placeholder="notaTarea" name="nombreCurso">
+                            <input class="form-control text-box single-line" type="text" name="notaTarea" placeholder="NotaTarea">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-2" >Estado de la Tarea: </label>
                         <div class="col-md-10">
-                            <input class="form-control text-box single-line" type="text" placeholder="estadoTarea" name="nombreCurso">
+                            <input class="form-control text-box single-line" type="text" name="estadoTarea" placeholder="EstadoTarea">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-2" >Fecha de Inicio Tarea: </label>
                         <div class="col-md-10">
-                            <input class="form-control text-box single-line" type="date" placeholder="fechaInicioTarea" name="nombreCurso">
+                            <input class="form-control text-box single-line" type="date" name="fechaInicioTarea">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-2" >Fecha de Fin Tarea: </label>
                         <div class="col-md-10">
-                            <input class="form-control text-box single-line" type="date" placeholder="fechaFinTarea" name="nombreCurso">
+                            <input class="form-control text-box single-line" type="date" name="fechaFinTarea">
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-2" >Profesor: </label>
-                        <div class="col-md-10">                            
-                            <select class="form-control" name="profesores">
-                                {{#each profesores}}
-                                    <option value="{{this.id}}">{{this.nombreProfesor}}</option>
-                                {{/each}}
-                            </select>                            
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-2" >Estudiante: </label>
-                        <div class="col-md-10">                            
-                            <select class="form-control" name="estudiantes">
-                                {{#each estudiantes}}
-                                    <option value="{{this.id}}">{{this.nombreEstudiante}}</option>
-                                {{/each}}
-                            </select>                            
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-2" >Materia: </label>
-                        <div class="col-md-10">                            
-                            <select class="form-control" name="materias">
-                                {{#each materias}}
-                                    <option value="{{this.id}}">{{this.nombreMateria}}</option>
-                                {{/each}}
-                            </select>                            
-                        </div>
-                    </div>
+                    </div>                    
                     <div class="form-group">
                         <div class="control-label col-md-2" >
                             <button class="btn btn-primary" type="submit" value="create">Create</button>
@@ -110,5 +61,21 @@
         function goBack() {
             window.history.back();
         }
+    </script>
+    <script>
+        $(function(){     
+            $.ajax({  
+            type: "GET",
+            url: "/header",  
+            dataType: "html",                
+            success: function(answer) {  
+                $("body").prepend(answer);  
+            },
+                error: function(){
+                alert("failed call!!!");
+            } 
+            }); 
+            return false;  
+        });
     </script>
 </html>

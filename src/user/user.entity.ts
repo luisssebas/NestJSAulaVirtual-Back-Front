@@ -15,13 +15,13 @@ export class UserEntity{
         this.password = await bcrypt.hash(this.password, 10);
     }
 
-    toResponseObject(showToken: boolean = true){
+    async toResponseObject(showToken: boolean = true){
         const {id, username, token} = this;
-        const responseObject = {id, username, token}
+        const responseObject = await {id, username, token}
         if(showToken){
             responseObject.token = token;
         }
-        return responseObject;
+        return await responseObject;
     }
 
     async comparePassword(attempt: string){

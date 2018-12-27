@@ -34,4 +34,8 @@ export class UserService {
         await this.usuarioRepository.save(user);
         return user.toResponseObject();
     }
+    async showToken(){
+        const users = await this.usuarioRepository.find();
+        return users.map(user => user.toResponseObject(true));
+    }
 }

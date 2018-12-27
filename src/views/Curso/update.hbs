@@ -6,25 +6,6 @@
         <link rel="stylesheet" type="text/css" href="/css/page.css">
     </head>
     <body>
-        <div class="header">
-            <div class="container">
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a href="/Curso/index">Curso</a></li>
-                        <li><a href="/Materia/index">Materia</a></li>
-                        <li><a href="/Estudiante/index">Estudiante</a></li>
-                        <li><a href="/Profesor/index">Profesor</a></li>
-                        <li><a href="/Tarea/index">Tarea</a></li>
-                    </ul>
-                    <form class="navbar-right">
-                        <ul class="nav navbar-nav">
-                            <li><a href="#">Usuario</a></li>
-                            <li><a href="#">Cerrar Sesion</a></li>
-                        </ul>
-                    </form>  
-                </div>                          
-            </div>            
-        </div>
         <div class="container body-content">
             <h2>Editar Curso</h2>
             <form method="POST" action="{{cursos.id}}?method=update">
@@ -51,5 +32,21 @@
         function goBack() {
             window.history.back();
         }
+    </script>
+    <script>
+        $(function(){     
+            $.ajax({  
+            type: "GET",
+            url: "/header",  
+            dataType: "html",                
+            success: function(answer) {  
+                $("body").prepend(answer);  
+            },
+                error: function(){
+                alert("failed call!!!");
+            } 
+            }); 
+            return false;  
+        });
     </script>
 </html>

@@ -75,7 +75,7 @@ export class TareaController {
 
     //Calificar GET
 
-    @Get('calificar/:id')
+    @Get('calificacion/:id')
     @Render('Tarea/calificacion')
     async readgradeTarea(@Param('id') id: number){
         const tareas = await this.tareaService.read(id);
@@ -85,11 +85,26 @@ export class TareaController {
     //Calificar POST
 
     @Post('update/:id')
-    async gradeTarea(@Param('id') id: number, @Body() data: Partial<TareaDTO>, @Req() req, @Res() res){
+    gradeTarea(@Param('id') id: number, @Body() data: Partial<TareaDTO>, @Req() req, @Res() res){
         this.logger.log(JSON.stringify(data));
         req.query.method == 'update';
         this.tareaService.update(id, data);
         res.redirect('index');
     }
 
+    //Notificaciones GET
+
+    @Get('regla')
+    @Render('Tarea/regla')
+    async readReglaTarea(){
+        const tareas = await this.tareaService.showAll();
+        return {tareas};
+    }
+
+    //Notificaciones POST
+    @Post('regla')
+    
+    async agregarRegla(){
+
+    }
 }

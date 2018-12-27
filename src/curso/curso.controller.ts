@@ -1,7 +1,7 @@
-import { Controller, Get, Post, Render, Logger, Body, Param, Res, Req} from '@nestjs/common';
+import { Controller, Get, Post, Render, Logger, Body, Param, Res, Req, UseGuards} from '@nestjs/common';
 import { CursoService } from './curso.service';
 import { CursoDTO } from './curso.dto';
-import { from } from 'rxjs';
+import { AuthGuard } from 'shared/auth.guard';
 
 @Controller('curso')
 export class CursoController {
@@ -10,7 +10,7 @@ export class CursoController {
     constructor(private cursoService: CursoService){}
 
     @Get('index')
-    //@UseGuards(new AuthGuard())
+    @UseGuards(new AuthGuard())
     @Render('Curso/index')
     async showAllCursos(){
         const  cursos = await this.cursoService.showAll();

@@ -4,27 +4,9 @@
         <title>Tarea</title>
         <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="/css/page.css">
+        <script src="//cdn.jsdelivr.net/handlebarsjs/4.0.5/handlebars.runtime.min.js"></script>
     </head>
-    <body>
-        <div class="header">
-            <div class="container">
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a href="/Curso/index">Curso</a></li>
-                        <li><a href="/Materia/index">Materia</a></li>
-                        <li><a href="/Estudiante/index">Estudiante</a></li>
-                        <li><a href="/Profesor/index">Profesor</a></li>
-                        <li><a href="/Tarea/index">Tarea</a></li>
-                    </ul>
-                    <form class="navbar-right">
-                        <ul class="nav navbar-nav">
-                            <li><a href="#">Usuario</a></li>
-                            <li><a href="#">Cerrar Sesion</a></li>
-                        </ul>
-                    </form>
-                </div>                
-            </div>
-        </div>
+    <body onload="initNotifications()">
         <div class="container body-content">
             <h2>Lista de Tareas</h2>
             <div class="entry">
@@ -42,19 +24,20 @@
                         <th></th>
                     </tr>
                     {{#each tareas}}
-                        <tr>
-                            <td>{{this.profesores}}</td>
-                            <td>{{this.estudiantes}}</td>
-                            <td>{{this.materias}}</td>
-                            <td>{{this.nombreTarea}}</td>
-                            <td>{{this.descripcionTarea}}</td>
-                            <td>{{this.notaTarea}}</td>
-                            <td>{{this.estadoTarea}}</td>
-                            <td>{{this.fechaInicioTarea}}</td>
-                            <td>{{this.fechaFinTarea}}</td>
-                            <td><button class="btn btn-info" onclick="window.location.href='update/{{this.id}}'">Edit</button>
-                            <form class="delete" method="POST" action="delete/{{this.id}}?method=delete"><button class="btn btn-danger" onclick="showNotification()">Delete</button></form></td>                        
-                        </tr> 
+                            <tr>
+                                <td>{{this.profesores}}</td>
+                                <td>{{this.estudiantes}}</td>
+                                <td>{{this.materias}}</td>
+                                <td>{{this.nombreTarea}}</td>
+                                <td>{{this.descripcionTarea}}</td>                                
+                                <td>{{this.notaTarea}}</td>                                
+                                <td>{{this.estadoTarea}}</td>
+                                <td>{{this.fechaInicioTarea}}</td>
+                                <td>{{this.fechaFinTarea}}</td>
+                                <td><button class="btn btn-info" onclick="window.location.href='calificacion/{{this.id}}'">Calificar</button>
+                                <button class="btn btn-info" onclick="window.location.href='update/{{this.id}}'">Edit</button>
+                                <form class="delete" method="POST" action="delete/{{this.id}}?method=delete"><button class="btn btn-danger" onclick="showNotification()">Delete</button></form></td>                        
+                            </tr>                        
                     {{/each}}
                 </table>
                 <br/>
@@ -68,5 +51,50 @@
         function goBack() {
             window.history.back();
         }
-    </script>    
+    </script>
+    <script type="text/javascript">
+        var notificationsEnabled = false;
+        
+            function initNotifications() {
+                if (window.Notification) {
+                    Notification.requestPermission(function(permission) {
+                        if (permission === 'granted') {
+                            notificationsEnabled = true;
+                        } else {
+                            alert("You denied Notifications, it's so sad :(");
+                        }
+                    });
+                } else {
+                    alert("Your browser doesn't support Notifications API");
+                }
+            }
+            
+            function showNotification() {
+                if (notificationsEnabled) {
+                    var notification = new Notification("Aula Virtual", {
+                        body : 'Nota Baja de 6!'
+                    });
+                    
+                    setTimeout(function() { notification.close(); }, 5000);
+                } else {
+                    alert("Notifications are disabled");
+                }
+            }
+    </script> 
+    <script>
+        $(function(){     
+            $.ajax({  
+            type: "GET",
+            url: "/header",  
+            dataType: "html",                
+            success: function(answer) {  
+                $("body").prepend(answer);  
+            },
+                error: function(){
+                alert("failed call!!!");
+            } 
+            }); 
+            return false;  
+        });
+    </script>
 </html>

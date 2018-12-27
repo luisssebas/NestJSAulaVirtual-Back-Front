@@ -6,37 +6,42 @@
         <link rel="stylesheet" type="text/css" href="/css/page.css">
     </head>
     <body>
-        <div class="header">
+        <header class="header">
             <div class="container">
                 <div class="navbar-collapse collapse">
                     <form class="navbar-right">
                         <ul class="nav navbar-nav">
-                            <li><a href="/User/register">Registrarse</a></li>
+                            <li><a href="/register">Registrar</a></li>
                             <li><a href="#">Iniciar Sesion</a></li>
                         </ul>
                     </form>
                 </div>                
             </div>
-        </div>
+        </header>        
         <div class="container body-content">
             <h2>Iniciar Sesion</h2>
             <div class="col-md-8">
-                <section id="loginForm">
-                    <form action="POST">
+                
+                    <form method="POST" action="?method=login">
                         <div class="form-group">
-                            <label class="control-label col-md-2" >Nombre del Curso: </label>
+                            <label class="control-label col-md-2" >Usuario: </label>
                             <div class="col-md-10">
-                                <input class="form-control text-box single-line" type="text" placeholder="Curso" name="nombreCurso">
+                                <input class="form-control text-box single-line" type="text" placeholder="Usuario" name="username">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2" >Contraseña: </label>
+                            <div class="col-md-10">
+                                <input class="form-control text-box single-line" type="text" placeholder="Contraseña" name="password">
                             </div>
                         </div>
 
                         <div class="form-group">
-                        <div class="control-label col-md-2" >
-                            <button class="btn btn-primary" type="submit" value="create">Iniciar Sesion</button>
-                        </div>
+                            <div class="control-label col-md-2" >
+                                <button class="btn btn-primary" type="submit" value="Submit form">Iniciar Sesion</button>
+                            </div>
                         </div>
                     </form>
-                </section>
             </div>
             <button class="btn btn-warning" onclick="goBack()">Regresar</button>
             <button class="btn btn-dark" onclick="window.location.href='/Curso/index'">Inicio</button>              
