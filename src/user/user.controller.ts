@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, UsePipes, UseGuards, Render, Res, Req, Log
 import { UserService } from './user.service';
 import { UserDTO } from './user.dto';
 import { ValidationPipe } from 'shared/validation.pipe';
+import { empty } from 'rxjs';
 
 @Controller()
 export class UserController {
@@ -21,10 +22,14 @@ export class UserController {
     @UsePipes(new ValidationPipe())
     login(@Body() data: UserDTO, @Res() res, @Req() req){
         req.query.method == 'login';
-        const user = this.usuarioService.login(data);        
-        res.redirect('/Curso/index')
-        console.log(user);
-        return {user};
+        const user = this.usuarioService.login(data);
+        if(!user){
+            res.redirect('/login')
+        }else{
+            res.redirect('/Curso/index')
+            console.log(user);
+            return {user};
+        }        
     }
 
     @Get('register')

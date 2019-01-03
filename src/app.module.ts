@@ -14,17 +14,20 @@ import { UserModule } from './user/user.module';
 import { UserController } from 'user/user.controller';
 import { UserService } from 'user/user.service';
 import { AuthGuard } from 'shared/auth.guard';
+import { AuthModule } from './auth/auth.module';
+import { AuthService } from './auth/auth.service';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(), CursoModule, EstudianteModule, MateriaModule, ProfesorModule, TareaModule, UserModule],
+  imports: [TypeOrmModule.forRoot(), CursoModule, EstudianteModule, MateriaModule, ProfesorModule, TareaModule, UserModule, AuthModule],
   controllers: [AppController,UserController],
   providers: [AppService, {
     provide: APP_FILTER,
     useClass: HttpErrorFilter
-  },UserService,AuthGuard,
+  },UserService,
   {
     provide: APP_INTERCEPTOR,
     useClass: LoggingInterceptor,
-  }],
+  },
+  AuthService],
 })
 export class AppModule {}

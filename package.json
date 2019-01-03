@@ -18,6 +18,8 @@
   "dependencies": {
     "@nestjs/common": "^5.1.0",
     "@nestjs/core": "^5.1.0",
+    "@nestjs/jwt": "^0.2.1",
+    "@nestjs/passport": "^5.1.0",
     "@nestjs/typeorm": "^5.2.2",
     "@types/dotenv": "^4.0.3",
     "ajv": "^6.5.4",
@@ -29,6 +31,9 @@
     "hbs": "^4.0.1",
     "jsonwebtoken": "^8.4.0",
     "mysql": "^2.16.0",
+    "passport": "^0.4.0",
+    "passport-http-bearer": "^1.0.1",
+    "passport-jwt": "^4.0.0",
     "reflect-metadata": "^0.1.12",
     "rxjs": "^6.2.2",
     "typeorm": "^0.2.8",
