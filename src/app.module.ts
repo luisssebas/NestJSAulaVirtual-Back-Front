@@ -11,14 +11,17 @@ import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { HttpErrorFilter } from 'shared/http-error.filter';
 import { LoggingInterceptor } from 'shared/logging.interceptor';
 import { UserModule } from './user/user.module';
+import { UserController } from 'user/user.controller';
+import { UserService } from 'user/user.service';
+import { AuthGuard } from 'shared/auth.guard';
 
 @Module({
   imports: [TypeOrmModule.forRoot(), CursoModule, EstudianteModule, MateriaModule, ProfesorModule, TareaModule, UserModule],
-  controllers: [AppController],
+  controllers: [AppController,UserController],
   providers: [AppService, {
     provide: APP_FILTER,
     useClass: HttpErrorFilter
-  },
+  },UserService,AuthGuard,
   {
     provide: APP_INTERCEPTOR,
     useClass: LoggingInterceptor,

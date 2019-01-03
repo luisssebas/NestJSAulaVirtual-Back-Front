@@ -4,6 +4,7 @@
         <title>Login</title>
         <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="/css/page.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
     </head>
     <body>
         <header class="header">
@@ -12,7 +13,7 @@
                     <form class="navbar-right">
                         <ul class="nav navbar-nav">
                             <li><a href="/register">Registrar</a></li>
-                            <li><a href="#">Iniciar Sesion</a></li>
+                            <li><a href="/login">Iniciar Sesion</a></li>
                         </ul>
                     </form>
                 </div>                
@@ -20,8 +21,8 @@
         </header>        
         <div class="container body-content">
             <h2>Iniciar Sesion</h2>
-            <div class="col-md-8">
-                
+            {{this.users}}
+            <div class="col-md-8">                
                     <form method="POST" action="?method=login">
                         <div class="form-group">
                             <label class="control-label col-md-2" >Usuario: </label>

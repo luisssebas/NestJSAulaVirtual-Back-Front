@@ -4,8 +4,9 @@
         <title>Curso</title>
         <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="/css/page.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
     </head>
+    <!--<input type="hidden" id="token" value="Bearer {{user}}">-->
     <body onload="initNotifications()">         
         <div class="container body-content">
             <h2>Lista de Cursos</h2>
@@ -39,6 +40,7 @@
 	var notificationsEnabled = false;
 	
         function initNotifications() {
+            console.log('lego');
             if (window.Notification) {
                 Notification.requestPermission(function(permission) {
                     if (permission === 'granted') {
@@ -79,5 +81,5 @@
             }); 
             return false;  
         });
-    </script>
+    </script>    
 </html>

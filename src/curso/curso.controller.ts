@@ -10,13 +10,10 @@ export class CursoController {
     constructor(private cursoService: CursoService){}
 
     @Get('index')
-    @UseGuards(new AuthGuard())
     @Render('Curso/index')
+    //@UseGuards(new AuthGuard())
     async showAllCursos(){
         const  cursos = await this.cursoService.showAll();
-        //this.logger.log(JSON.stringify(num));
-        var count = Object.keys(cursos).length;
-        console.log(count);
         return {cursos};
     }
 
@@ -24,6 +21,7 @@ export class CursoController {
 
     @Get('create')    
     @Render('Curso/create')
+    @UseGuards(new AuthGuard())
     async showCursos(){
         const  cursos = await this.cursoService.showAll();
         return {cursos};

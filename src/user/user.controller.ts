@@ -3,9 +3,9 @@ import { UserService } from './user.service';
 import { UserDTO } from './user.dto';
 import { ValidationPipe } from 'shared/validation.pipe';
 
-
 @Controller()
 export class UserController {
+        
     constructor(private usuarioService: UserService){}
     private logger = new Logger('EstudianteController');
 
@@ -13,6 +13,7 @@ export class UserController {
     @Render('User/login')
     async showAllUsers(){
         const users = await this.usuarioService.showAll();
+        console.log(users);
         return {users};
     }
 
@@ -42,8 +43,7 @@ export class UserController {
     @Get('header')
     @Render('User/header')
     async header(){
-        const user = await this.usuarioService.showToken();        
-        this.logger.log(JSON.stringify(user));
+        const user = await this.usuarioService.showAll(); 
         console.log(user);
         return {user};
     }

@@ -15,6 +15,8 @@ export class TareaEntity{
 
     @Column('text') estadoTarea: string;
 
+    @Column('text') TrimestreTarea: number;
+
     @CreateDateColumn() fechaInicioTarea: Date;
 
     @CreateDateColumn() fechaFinTarea: Date;

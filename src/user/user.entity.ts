@@ -16,7 +16,7 @@ export class UserEntity{
     }
 
     async toResponseObject(showToken: boolean = true){
-        const {id, username, token} = this;
+        const {id, username, token} = await this;
         const responseObject = await {id, username, token}
         if(showToken){
             responseObject.token = token;

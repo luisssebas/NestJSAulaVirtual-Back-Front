@@ -2,7 +2,7 @@ import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { UserEntity } from './user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { UserDTO } from './user.dto';
+import { UserDTO, UserRO } from './user.dto';
 
 @Injectable()
 export class UserService {
@@ -12,7 +12,7 @@ export class UserService {
 
     async showAll(){
         const users = await this.usuarioRepository.find();
-        return users.map(user => user.toResponseObject(true));
+        return await users.map(user => user.toResponseObject(true));
     }
 
     async login(data:UserDTO){
@@ -33,9 +33,5 @@ export class UserService {
         user = await this.usuarioRepository.create(data);
         await this.usuarioRepository.save(user);
         return user.toResponseObject();
-    }
-    async showToken(){
-        const users = await this.usuarioRepository.find();
-        return users.map(user => user.toResponseObject(true));
     }
 }
