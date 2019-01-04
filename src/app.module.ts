@@ -15,7 +15,6 @@ import { UserController } from 'user/user.controller';
 import { UserService } from 'user/user.service';
 import { AuthGuard } from 'shared/auth.guard';
 import { AuthModule } from './auth/auth.module';
-import { AuthService } from './auth/auth.service';
 
 @Module({
   imports: [TypeOrmModule.forRoot(), CursoModule, EstudianteModule, MateriaModule, ProfesorModule, TareaModule, UserModule, AuthModule],
@@ -27,7 +26,6 @@ import { AuthService } from './auth/auth.service';
   {
     provide: APP_INTERCEPTOR,
     useClass: LoggingInterceptor,
-  },
-  AuthService],
+  }],
 })
 export class AppModule {}

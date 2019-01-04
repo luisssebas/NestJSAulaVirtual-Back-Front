@@ -1,8 +1,8 @@
-import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus, Res} from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { UserEntity } from './user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { UserDTO, UserRO } from './user.dto';
+import { UserDTO } from './user.dto';
 
 @Injectable()
 export class UserService {
@@ -15,12 +15,13 @@ export class UserService {
         return await users.map(user => user.toResponseObject(true));
     }
 
-    async login(data:UserDTO){
+    async login(data:UserDTO, @Res() res){
         const {username, password} = data;
         const user = await this.usuarioRepository.findOne({where: {username}});
         if(!user || !(await user.comparePassword(password))){
             throw new HttpException('Invalid username/password', HttpStatus.BAD_REQUEST);
         }
+        res.sent('Authorization', 'Bearer ' + user.token);
         return user.toResponseObject();
     }
 
@@ -33,5 +34,10 @@ export class UserService {
         user = await this.usuarioRepository.create(data);
         await this.usuarioRepository.save(user);
         return user.toResponseObject();
+    }
+    
+    async findOneByToken() {
+        const token = process.env.SECRET;
+        return token;
     }
 }

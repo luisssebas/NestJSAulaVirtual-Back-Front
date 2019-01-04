@@ -28,7 +28,7 @@ export class UserEntity{
         return await bcrypt.compare(attempt, this.password);
     }
 
-    private get token(){
+    public get token(){
         const {id, username} = this;
         return jwt.sign({
             id, username
