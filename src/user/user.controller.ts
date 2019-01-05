@@ -14,7 +14,6 @@ export class UserController {
     @Render('User/login')
     async showAllUsers(){
         const users = await this.usuarioService.showAll();
-        console.log(users);
         return {users};
     }
 
@@ -23,13 +22,8 @@ export class UserController {
     login(@Body() data: UserDTO, @Res() res, @Req() req){
         req.query.method == 'login';
         const user = this.usuarioService.login(data);
-        if(!user){
-            res.redirect('/login')
-        }else{
-            res.redirect('/Curso/index')
-            console.log(user);
-            return {user};
-        }        
+        res.redirect('/Curso/index')
+        return {user};        
     }
 
     @Get('register')
@@ -47,9 +41,10 @@ export class UserController {
     }
     @Get('header')
     @Render('User/header')
-    async header(){
-        const user = await this.usuarioService.showAll(); 
-        console.log(user);
+    async header(@Res() res){
+        const user = await this.usuarioService.findOneByToken();   
+        console.log(user);             
+        res.set("Authorization", "Bearer " + user);
         return {user};
     }
 }

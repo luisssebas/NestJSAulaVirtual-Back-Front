@@ -2,7 +2,7 @@ import { Injectable, HttpException, HttpStatus, Res} from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { UserEntity } from './user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { UserDTO } from './user.dto';
+import { UserDTO, UserRO } from './user.dto';
 
 @Injectable()
 export class UserService {
@@ -15,13 +15,12 @@ export class UserService {
         return await users.map(user => user.toResponseObject(true));
     }
 
-    async login(data:UserDTO, @Res() res){
+    async login(data:UserDTO){
         const {username, password} = data;
         const user = await this.usuarioRepository.findOne({where: {username}});
         if(!user || !(await user.comparePassword(password))){
             throw new HttpException('Invalid username/password', HttpStatus.BAD_REQUEST);
         }
-        res.sent('Authorization', 'Bearer ' + user.token);
         return user.toResponseObject();
     }
 
@@ -37,7 +36,8 @@ export class UserService {
     }
     
     async findOneByToken() {
-        const token = process.env.SECRET;
-        return token;
+        let user:UserRO;
+        console.log(user)
+        return await user.token;
     }
 }
